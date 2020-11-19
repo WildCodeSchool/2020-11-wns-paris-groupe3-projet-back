@@ -1,4 +1,4 @@
-import { Task } from "../models/Task";
+import { Task } from "../models/task";
 import { User } from "../models/users";
 var ObjectID = require("mongodb").ObjectID;
 
