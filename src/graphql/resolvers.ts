@@ -12,7 +12,7 @@ const resolvers = {
   },
   
   Mutation: {
-    createTask: async ( args: any ): Promise<Document> => {
+    createTask: async (parent: any, args: any ): Promise<Document> => {
       try {
         const newTask = {
           title: args.input.title,
