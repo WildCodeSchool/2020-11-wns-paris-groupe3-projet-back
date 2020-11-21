@@ -1,1 +1,1 @@
-web: tsc && node ./built/src/server.js
+web: run-script tsc && node ./built/server.js
