@@ -1,19 +1,8 @@
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
-import typeDefs from "./graphql/typedefs";
+import { ApolloServer } from 'apollo-server-express';
 import resolvers from "./graphql/resolvers";
-require("./mongo/config");
+import typeDefs from "./graphql/typedefs";
 
-const PORT = process.env.PORT || 8080
-
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
-const expressServer = express();
-apolloServer.applyMiddleware({ app: expressServer });
-
-expressServer.listen(PORT, () =>
-  console.log(
-    `🚀 Serveur lancé sur: ${PORT}`
-  )
-);
-
-
+export async function getApolloServer(): Promise<ApolloServer> {
+    const apolloServer = new ApolloServer({ typeDefs, resolvers });
+    return apolloServer;
+}
