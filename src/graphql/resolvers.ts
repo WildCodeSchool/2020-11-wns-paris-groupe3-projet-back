@@ -27,12 +27,13 @@ const resolvers = {
     },
 
     createTask: async (parent: any, args: any): Promise<Document> => {
+      console.log(parent)
       try {
         const newTask = {
-          title: args.input.title,
-          start: args.input.start,
-          end: args.input.end,
           _id: new ObjectID(),
+          taskname: args.input.taskname,
+          creation_date: args.input.creation_date,
+          user_id: new ObjectID(),
         };
         const response = await Task.create(newTask);
         return response;

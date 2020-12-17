@@ -5,19 +5,21 @@ const ObjectID = mongodb.ObjectID;
 export const TaskSchema = new Schema(
   {
     _id: {
+      type: ObjectID,
+    },
+
+    taskname: {
       type: String,
     },
 
-    title: {
+    // File
+
+    creation_date: {
       type: String,
     },
 
-    start: {
-      type: String,
-    },
-
-    end: {
-      type: String,
+    user_id: {
+      type: ObjectID,
     },
   },
 
