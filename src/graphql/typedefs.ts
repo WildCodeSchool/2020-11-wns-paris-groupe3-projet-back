@@ -14,12 +14,17 @@ const typeDefs = gql`
     user_id: ID
   }
 
+  type Role {
+    _id: ID
+    role_name: String
+  }
+
   input InputUser {
     name: String!
   }
 
   input InputTask {
-    taskname: String,
+    taskname: String
     creation_date: String
   }
 
@@ -27,6 +32,7 @@ const typeDefs = gql`
     hello: String
     users: [User]
     tasks: [Task]
+    roles: [Role]
   }
 
   type Mutation {

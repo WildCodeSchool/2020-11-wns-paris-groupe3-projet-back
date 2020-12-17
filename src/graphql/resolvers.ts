@@ -2,6 +2,7 @@ import mongodb from "mongodb";
 import { Document } from "mongoose";
 import { Task } from "../models/task";
 import { User } from "../models/user";
+import { Role } from "../models/role";
 
 const ObjectID = mongodb.ObjectID;
 
@@ -9,6 +10,7 @@ const resolvers = {
   Query: {
     users: async (): Promise<Document[]> => await User.find({}).exec(),
     tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
+    roles: async (): Promise<Document[]> => await Role.find({}).exec(),
   },
 
   Mutation: {
@@ -27,7 +29,7 @@ const resolvers = {
     },
 
     createTask: async (parent: any, args: any): Promise<Document> => {
-      console.log(parent)
+      console.log(parent);
       try {
         const newTask = {
           _id: new ObjectID(),
