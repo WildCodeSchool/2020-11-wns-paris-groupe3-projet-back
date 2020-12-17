@@ -12,6 +12,10 @@ const typeDefs = gql`
     start: String!
     end: String!
   }
+  
+  input InputUser {
+    name: String!
+  }
 
   input InputTask {
     title: String!
@@ -21,11 +25,12 @@ const typeDefs = gql`
 
   type Query {
     hello: String
-    getUsers: [User]
-    allTasks: [Task]
+    users: [User]
+    tasks: [Task]
   }
 
   type Mutation {
+    createUser(input: InputUser): User
     createTask(input: InputTask): Task
   }
 `;
