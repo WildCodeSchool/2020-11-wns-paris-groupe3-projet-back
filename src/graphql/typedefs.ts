@@ -19,6 +19,11 @@ const typeDefs = gql`
     role_name: String
   }
 
+  type Speciality {
+    _id: ID
+    speciality_name: String
+  }
+
   input InputUser {
     name: String!
   }
@@ -33,6 +38,7 @@ const typeDefs = gql`
     users: [User]
     tasks: [Task]
     roles: [Role]
+    specialities: [Speciality]
   }
 
   type Mutation {
