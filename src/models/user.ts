@@ -1,14 +1,22 @@
 import mongoose, { Schema } from "mongoose";
+import mongodb from "mongodb";
+const ObjectID = mongodb.ObjectID;
 
 export const UserSchema = new Schema(
   {
     _id: {
-      type: String,
+      type: ObjectID,
     },
-    name: {
-      type: String,
+
+    role_id: {
+      type: ObjectID,
+    },
+
+    speciality_id: {
+      type: ObjectID,
     },
   },
+
   { collection: "Users" }
 );
 

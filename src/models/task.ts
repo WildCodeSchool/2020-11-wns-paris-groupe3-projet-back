@@ -1,4 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import mongodb from "mongodb";
+const ObjectID = mongodb.ObjectID;
 
 export const TaskSchema = new Schema(
   {
@@ -9,13 +11,16 @@ export const TaskSchema = new Schema(
     title: {
       type: String,
     },
+
     start: {
       type: String,
     },
+
     end: {
       type: String,
     },
   },
+
   { collection: "Tasks" }
 );
 
