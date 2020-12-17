@@ -32,7 +32,7 @@ const resolvers = {
           speciality_id: new ObjectID(),
         };
         //  On stock dans response , le résultat attendu de la création a partir du model User.
-        //  et avec les paramètres contenu dans newUser
+        //  et avec les paramètres contenu dans newUser   
         const response = await User.create(newUser);
         return response;
       } catch (e) {
