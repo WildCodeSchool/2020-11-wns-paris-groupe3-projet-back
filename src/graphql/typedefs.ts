@@ -1,5 +1,9 @@
 import { gql } from "apollo-server-express";
 
+// Définition des types qui correspondent aux collections de la base Mongo
+// On peut récupérer des valeurs de champs grace aux input
+// Définition des type Query qui permettent la lecture des données
+// Définition des types mutation qui permettent la modification des données
 const typeDefs = gql`
   type User {
     _id: ID!
