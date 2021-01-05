@@ -2,30 +2,28 @@ import mongoose, { Schema } from "mongoose";
 import mongodb from "mongodb";
 const ObjectID = mongodb.ObjectID;
 
-export const UserSchema = new Schema(
+export const GradeSchema = new Schema(
   {
     _id: {
       type: ObjectID,
     },
 
-    username: {
-      type: String,
-      required: true,
+    result: {
+      type: Number,
     },
 
-    role: {
+    task: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Role",
+      ref: "Task",
     },
 
-    speciality: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Speciality",
+      ref: "User",
     },
   },
 
-  { collection: "User" }
+  { collection: "Grade" }
 );
 
-export const User = mongoose.model("User", UserSchema);
+export const Grade = mongoose.model("Grade", GradeSchema);

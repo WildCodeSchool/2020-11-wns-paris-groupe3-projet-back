@@ -4,6 +4,8 @@ import { Task } from "../models/task";
 import { User } from "../models/user";
 import { Role } from "../models/role";
 import { Speciality } from "../models/speciality";
+import { ApolloError } from "apollo-server-express";
+import { UserType } from "allTypes";
 
 // Permet de générer des objectID aléatoire
 const ObjectID = mongodb.ObjectID;
@@ -24,12 +26,27 @@ const resolvers = {
   Mutation: {
     // Mutation qui permet de créer un utilisateur
     createUser: async (parent: any, args: any): Promise<Document> => {
+      console.log("Args", args);
+
+      const find = await Role.findById("5fdb766b00e2c95340a59cc8");
+
+      if (!!find) {
+        throw new ApolloError(
+          "The x-api-key:12345 doesn't have sufficient privileges."
+        );
+      }
+
+      console.log("Find", find);
+      //  Find by Id (args.input.role) si n'est pas trouvé , renvoyer une erreur
+      //  Find by Id (args.input.speciality) si n'est pas trouvé , renvoyer une erreur
+      // sinon les données de l'utilisateur sont valides on peut le créer.
       try {
         // On définit un nouvel utilisateur avec ses diffèrents attributs (Id générer automatiquement)
-        const newUser = {
+        const newUser: UserType = {
           _id: new ObjectID(),
-          role_id: new ObjectID(),
-          speciality_id: new ObjectID(),
+          username: args.input.username,
+          role: args.input.role,
+          speciality: args.input.speciality,
         };
         //  On stock dans response , le résultat attendu de la création a partir du model User.
         //  et avec les paramètres contenu dans newUser

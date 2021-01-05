@@ -10,10 +10,11 @@ export const SpecialitySchema = new Schema(
 
     speciality_name: {
       type: String,
+      required: true 
     },
   },
 
-  { collection: "Specialty" }
+  { collection: "Speciality" }
 );
 
 export const Speciality = mongoose.model("Speciality", SpecialitySchema);

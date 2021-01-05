@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import mongodb from "mongodb";
+const { GraphQLDateTime } = require("graphql-iso-date");
 const ObjectID = mongodb.ObjectID;
 
 export const TaskSchema = new Schema(
@@ -9,21 +10,24 @@ export const TaskSchema = new Schema(
     },
 
     taskname: {
+      required: true,
       type: String,
     },
 
     // File
 
     creation_date: {
-      type: String,
+      required: true,
+      type: Date,
     },
 
-    user_id: {
-      type: ObjectID,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
 
-  { collection: "Tasks" }
+  { collection: "Task" }
 );
 
 export const Task = mongoose.model("Task", TaskSchema);

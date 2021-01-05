@@ -10,6 +10,7 @@ export const RoleSchema = new Schema(
 
     role_name: {
       type: String,
+      required: true,
     },
   },
 
