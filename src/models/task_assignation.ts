@@ -21,10 +21,7 @@ export const TaskAssignationSchema = new Schema(
       type: Date,
     },
 
-    affectedto: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: ["Class", "User", "Group"],
-    },
+    affectedTo: [{ type: ObjectID, ref: ["User", "Group", "Classroom"] }],
   },
 
   { collection: "Task_assignation" }

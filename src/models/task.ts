@@ -21,10 +21,7 @@ export const TaskSchema = new Schema(
       type: Date,
     },
 
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    users: [{ type: ObjectID, ref: "User" }],
   },
 
   { collection: "Task" }

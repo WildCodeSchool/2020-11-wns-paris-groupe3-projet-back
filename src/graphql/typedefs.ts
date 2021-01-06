@@ -11,7 +11,7 @@ const typeDefs = gql`
   type User {
     _id: ID!
     username: String!
-    role: ID!
+    role: Role!
     speciality: ID
   }
 
@@ -19,7 +19,7 @@ const typeDefs = gql`
     _id: ID!
     taskname: String!
     creation_date: DateTime!
-    user: [ID!]
+    users: [User]
   }
 
   type Role {
@@ -35,13 +35,13 @@ const typeDefs = gql`
   type Group {
     _id: ID!
     groupname: String!
-    user: [ID!]
+    users: [ID!]
   }
 
-  type Class {
+  type Classroom {
     _id: ID!
     classname: String!
-    user: [ID!]
+    users: [ID!]
   }
 
   type User_details {
@@ -98,20 +98,22 @@ const typeDefs = gql`
   input InputUser {
     username: String!
     role: ID!
-    speciality: ID
+    speciality: ID!
   }
 
   input InputTask {
     taskname: String
-    creation_date: String
+    users: [ID]
   }
 
   type Query {
-    hello: String
+    userById(id: ID!): User
+    taskById(id: ID!): Task
     users: [User]
     tasks: [Task]
     roles: [Role]
     specialities: [Speciality]
+    allTasksByUser(id: ID!): [Task]
   }
 
   type Mutation {

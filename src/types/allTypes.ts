@@ -6,6 +6,7 @@ export type UserType = {
   username: String;
   role: mongodb.ObjectID;
   speciality: mongodb.ObjectID;
+  //   task : mongodb.ObjectID;
 };
 
 export type UserDetailsType = {
@@ -19,8 +20,8 @@ export type UserDetailsType = {
 export type TaskType = {
   _id: mongodb.ObjectID;
   taskname: String;
-  creation_date: Date;
-  user: Array<mongodb.ObjectID>;
+  creation_date: Number;
+  users: Array<Object>;
 };
 
 export type TaskAssignation = {
@@ -86,4 +87,9 @@ export type AuthenticationType = {
   password: String;
   salt: String;
   user: mongodb.ObjectID;
+};
+
+export type ErrorType = {
+  name: String;
+  message: String;
 };

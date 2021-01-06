@@ -10,7 +10,7 @@ export const SpecialitySchema = new Schema(
 
     speciality_name: {
       type: String,
-      required: true 
+      required: true,
     },
   },
 
