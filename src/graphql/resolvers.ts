@@ -1,4 +1,4 @@
-import mongodb from "mongodb"
+import mongodb from "mongodb";
 import { Document } from "mongoose";
 import { Task } from "../models/task";
 import { User } from "../models/user";
@@ -10,9 +10,9 @@ const resolvers = {
     users: async (): Promise<Document[]> => await User.find({}).exec(),
     tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
   },
-  
+
   Mutation: {
-    createUser: async (parent: any, args: any ): Promise<Document> => {
+    createUser: async (parent: any, args: any): Promise<Document> => {
       try {
         const newUser = {
           name: args.input.name,
@@ -25,7 +25,7 @@ const resolvers = {
       }
     },
 
-    createTask: async (parent: any, args: any ): Promise<Document> => {
+    createTask: async (parent: any, args: any): Promise<Document> => {
       try {
         const newTask = {
           title: args.input.title,

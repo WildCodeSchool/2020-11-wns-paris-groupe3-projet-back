@@ -12,7 +12,7 @@ const typeDefs = gql`
     start: String!
     end: String!
   }
-  
+
   input InputUser {
     name: String!
   }
