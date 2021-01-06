@@ -8,18 +8,26 @@
     "test:watch": "jest --watch",
     "start": "npm run dev",
     "build": "tsc",
+    "prettier:write": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "lint": "eslint . ",
     "lint-fix": "eslint --fix . ",
     "dev": "ts-node-dev --transpile-only --respawn ./src/index.ts",
     "prod": "node ./built/server.js",
     "debug": "tsc && node --inspect ./built/server.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint-fix",
+      "pre-push": "CI=true npm test"
+    }
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/mongodb": "^3.5.33",
-    "@types/node": "^14.14.8",
     "@types/mongoose": "^5.10.0",
+    "@types/node": "^14.14.8",
     "apollo-server-express": "^2.19.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
@@ -30,6 +38,7 @@
     "express-graphql": "^0.11.0",
     "graphql": "^15.4.0",
     "graphql-compose-mongoose": "^9.0.0",
+    "husky": "^4.3.6",
     "mongodb": "^3.6.3",
     "mongoose": "^5.10.15",
     "mongoose-timestamp": "^0.6.0",
@@ -57,6 +66,7 @@
     "mongodb-memory-server": "^6.9.2",
     "nodemon": "^2.0.6",
     "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0",
