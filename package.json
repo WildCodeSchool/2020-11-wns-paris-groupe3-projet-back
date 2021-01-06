@@ -18,7 +18,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && npm run lint && npm run lint-fix && CI=true npm test"
+      "pre-commit": "pretty-quick --staged && npm run lint && npm run lint-fix",
+      "pre-push": "CI=true npm test"
     }
   },
   "author": "",
