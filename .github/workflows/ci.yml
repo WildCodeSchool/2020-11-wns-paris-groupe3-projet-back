@@ -1,0 +1,31 @@
+name: ci
+
+on: [push]
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node }} and ubuntu-latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: install
+        run: npm install
+      - name: lint
+        run: npm run lint
+      - name: write prettier
+        run: npm run prettier:write
+      - name: check prettier
+        run: npm run prettier:check
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm test
+        env:
+          CI: true
