@@ -36,7 +36,7 @@ describe("Apollo server", () => {
                 end: "20/12/2020"
               }
             ) {
-              titl
+              title
               start
               end
             }
