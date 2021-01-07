@@ -1,27 +1,25 @@
 import mongodb from "mongodb";
-const ObjectID = mongodb.ObjectID;
 
 export type UserType = {
   _id: mongodb.ObjectID;
-  username: String;
+  username: string;
   role: mongodb.ObjectID;
   speciality: mongodb.ObjectID;
-  //   task : mongodb.ObjectID;
 };
 
 export type UserDetailsType = {
   _id: mongodb.ObjectID;
-  firstname: String;
-  lastname: String;
-  email: String;
+  firstname: string;
+  lastname: string;
+  email: string;
   user: mongodb.ObjectID;
 };
 
 export type TaskType = {
   _id: mongodb.ObjectID;
-  taskname: String;
-  creation_date: Number;
-  users: Array<Object>;
+  taskname: string;
+  creation_date: number;
+  users: Array<mongodb.ObjectID>;
 };
 
 export type TaskAssignation = {
@@ -34,12 +32,12 @@ export type TaskAssignation = {
 
 export type SpecialityType = {
   _id: mongodb.ObjectID;
-  speciality_name: String;
+  speciality_name: string;
 };
 
 export type RoleType = {
   _id: mongodb.ObjectID;
-  role_name: String;
+  role_name: string;
 };
 
 export type RenderType = {
@@ -51,13 +49,13 @@ export type RenderType = {
 
 export type GroupType = {
   _id: mongodb.ObjectID;
-  groupname: String;
+  groupname: string;
   user: Array<mongodb.ObjectID>;
 };
 
 export type GradeType = {
   _id: mongodb.ObjectID;
-  result: Number;
+  result: number;
   task: mongodb.ObjectID;
   user: Array<mongodb.ObjectID>;
 };
@@ -72,24 +70,19 @@ export type CommentType = {
   _id: mongodb.ObjectID;
   user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  content: String;
+  content: string;
   creation_date: Date;
 };
 
 export type ClassroomType = {
   _id: mongodb.ObjectID;
-  classname: String;
-  users: Array<Object>;
+  classname: string;
+  users: Array<mongodb.ObjectID>;
 };
 
 export type AuthenticationType = {
   _id: mongodb.ObjectID;
-  password: String;
-  salt: String;
+  password: string;
+  salt: string;
   user: mongodb.ObjectID;
-};
-
-export type ErrorType = {
-  name: String;
-  message: String;
 };

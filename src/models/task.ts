@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import mongodb from "mongodb";
-const { GraphQLDateTime } = require("graphql-iso-date");
+
 const ObjectID = mongodb.ObjectID;
 
 export const TaskSchema = new Schema(

@@ -4,9 +4,7 @@ import { Task } from "../models/task";
 import { User } from "../models/user";
 import { Role } from "../models/role";
 import { Speciality } from "../models/speciality";
-import { ClassroomType, ErrorType, TaskType, UserType } from "allTypes";
-import { createError, formatError } from "apollo-errors";
-import { GraphQLError } from "graphql";
+import { ClassroomType, TaskType, UserType } from "allTypes";
 import { ApolloError } from "apollo-server-express";
 import { Classroom } from "../models/classroom";
 
@@ -32,13 +30,8 @@ const resolvers = {
       await Speciality.find({}).exec(),
 
     // Récupére toutes les tâches d'un utilisateur via son ID
-    allTasksByUser: async (
-      parent: any,
-      args: any,
-      context: any,
-      info: any
-    ): Promise<Document[]> => {
-      let allTasks: any = await Task.find({
+    allTasksByUser: async (parent: any, args: any): Promise<Document[]> => {
+      const allTasks: any = await Task.find({
         users: { $elemMatch: { $eq: args.id } },
       });
       return allTasks;
@@ -47,28 +40,18 @@ const resolvers = {
 
   // Définition du resolver nécessaire pour récupérer les infos des utilisateurs liés à une tâche
   Task: {
-    users: async (
-      parent: any,
-      args: any,
-      context: any,
-      info: any
-    ): Promise<Document[]> => {
-      let task: any = await Task.findById(parent.id);
-      let allUserForTask: any = await User.find({ _id: { $in: task.users } });
+    users: async (parent: any, args: any): Promise<Document[]> => {
+      const task: any = await Task.findById(parent.id);
+      const allUserForTask: any = await User.find({ _id: { $in: task.users } });
       return allUserForTask;
     },
   },
 
   // Définition du resolver permettant de récupérer le role d'un utilisateur
   User: {
-    role: async (
-      parent: any,
-      args: any,
-      context: any,
-      info: any
-    ): Promise<any> => {
-      let currentUser: any = await User.findById(parent.id);
-      let roleUser: any = await Role.findById(currentUser.role);
+    role: async (parent: any, args: any): Promise<any> => {
+      const currentUser: any = await User.findById(parent.id);
+      const roleUser: any = await Role.findById(currentUser.role);
       return roleUser;
     },
   },
