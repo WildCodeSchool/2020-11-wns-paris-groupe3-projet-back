@@ -61,9 +61,10 @@ const typeDefs = gql`
 
   type Render {
     _id: ID!
-    user: [ID!]
+    user: ID!
     task: ID!
-    creation_date: DateTime
+    url: String
+    creation_date: DateTime!
   }
 
   type Comment {
@@ -110,6 +111,12 @@ const typeDefs = gql`
     users: [ID]
   }
 
+  input InputRender {
+    user: ID!
+    task: ID!
+    url: String
+  }
+
   type Query {
     userById(id: ID!): User
     taskById(id: ID!): Task
@@ -124,6 +131,7 @@ const typeDefs = gql`
     createUser(input: InputUser): User
     createTask(input: InputTask): Task
     createClassroom(input: InputClassroom): Classroom
+    createRender(input: InputRender): Render
   }
 `;
 
