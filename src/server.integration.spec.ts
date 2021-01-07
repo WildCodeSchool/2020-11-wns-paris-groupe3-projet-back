@@ -24,72 +24,16 @@ describe("Apollo server", () => {
     await closeDatabase();
   });
 
-  describe("mutation task", () => {
-    it("creates and returns a new task", async () => {
-      const response = await mutate({
-        mutation: `
-          mutation {
-            createTask(
-              input: {
-                title: "Maths"
-                start: "12/12/2020"
-                end: "20/12/2020"
-              }
-            ) {
-              title
-              start
-              end
-            }
-          }
-        `,
-      });
-
-      expect(await Task.countDocuments()).toEqual(1);
-      expect(response.data).toMatchObject({
-        createTask: {
-          title: "Maths",
-          start: "12/12/2020",
-          end: "20/12/2020",
-        },
-      });
-    });
-
-    describe("mutation user", () => {
-      it("creates and returns a new user", async () => {
-        const response = await mutate({
-          mutation: `
-            mutation {
-              createUser(
-                input: {
-                  name: "Pierre"
-                }
-              ) {
-                name
-              }
-            }
-          `,
-        });
-
-        expect(await User.countDocuments()).toEqual(1);
-        expect(response.data).toMatchObject({
-          createUser: {
-            name: "Pierre",
-          },
-        });
-      });
-    });
-  });
-
   describe("query users", () => {
     it("returns all users", async () => {
       const user1 = User.create({
-        _id: "1",
-        name: "Pierre",
+        _id: "5ff492076a3476547d8cedcc",
+        username: "Pierre",
       });
       (await user1).save();
       const user2 = User.create({
-        _id: "2",
-        name: "Julie",
+        _id: "5ff49ef46a3476547d8cedcd",
+        username: "Julie",
       });
       (await user2).save();
 
@@ -98,7 +42,7 @@ describe("Apollo server", () => {
         {
           users {
             _id
-            name
+            username
           }
         }
       `,
@@ -107,61 +51,12 @@ describe("Apollo server", () => {
       expect(response.data).toEqual({
         users: [
           {
-            _id: "1",
-            name: "Pierre",
+            _id: "5ff492076a3476547d8cedcc",
+            username: "Pierre",
           },
           {
-            _id: "2",
-            name: "Julie",
-          },
-        ],
-      });
-    });
-  });
-
-  describe("query tasks", () => {
-    it("returns all tasks", async () => {
-      const task1 = Task.create({
-        _id: "1",
-        title: "Maths",
-        start: "12/12/2020",
-        end: "20/12/2020",
-      });
-      (await task1).save();
-      const task2 = Task.create({
-        _id: "2",
-        title: "Francais",
-        start: "12/12/2020",
-        end: "20/12/2020",
-      });
-      (await task2).save();
-
-      const response = await query({
-        query: `
-        {
-          tasks {
-            _id
-            title
-            start
-            end
-          }
-        }
-      `,
-      });
-
-      expect(response.data).toEqual({
-        tasks: [
-          {
-            _id: "1",
-            title: "Maths",
-            start: "12/12/2020",
-            end: "20/12/2020",
-          },
-          {
-            _id: "2",
-            title: "Francais",
-            start: "12/12/2020",
-            end: "20/12/2020",
+            _id: "5ff49ef46a3476547d8cedcd",
+            username: "Julie",
           },
         ],
       });

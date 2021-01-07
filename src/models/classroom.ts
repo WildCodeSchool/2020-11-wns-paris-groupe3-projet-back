@@ -3,28 +3,20 @@ import mongodb from "mongodb";
 
 const ObjectID = mongodb.ObjectID;
 
-export const TaskSchema = new Schema(
+export const ClassroomSchema = new Schema(
   {
     _id: {
       type: ObjectID,
     },
 
-    taskname: {
-      required: true,
+    classname: {
       type: String,
-    },
-
-    // File
-
-    creation_date: {
-      required: true,
-      type: Date,
     },
 
     users: [{ type: ObjectID, ref: "User" }],
   },
 
-  { collection: "Task" }
+  { collection: "Classroom" }
 );
 
-export const Task = mongoose.model("Task", TaskSchema);
+export const Classroom = mongoose.model("Classroom", ClassroomSchema);
