@@ -16,7 +16,7 @@ export const UserSchema = new Schema(
 
     role: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: "Role",
     },
 
