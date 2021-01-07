@@ -79,7 +79,7 @@ export type CommentType = {
 export type ClassroomType = {
   _id: mongodb.ObjectID;
   classname: String;
-  user: Array<mongodb.ObjectID>;
+  users: Array<Object>;
 };
 
 export type AuthenticationType = {

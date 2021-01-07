@@ -1,5 +1,4 @@
 import { gql } from "apollo-server-express";
-const { GraphQLDate } = require("graphql-iso-date");
 
 // Définition des types qui correspondent aux collections de la base Mongo
 // On peut récupérer des valeurs de champs grace aux input
@@ -41,7 +40,7 @@ const typeDefs = gql`
   type Classroom {
     _id: ID!
     classname: String!
-    users: [ID!]
+    users: [User]
   }
 
   type User_details {
@@ -106,6 +105,11 @@ const typeDefs = gql`
     users: [ID]
   }
 
+  input InputClassroom {
+    classname: String!
+    users: [ID]
+  }
+
   type Query {
     userById(id: ID!): User
     taskById(id: ID!): Task
@@ -119,6 +123,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(input: InputUser): User
     createTask(input: InputTask): Task
+    createClassroom(input: InputClassroom): Classroom
   }
 `;
 

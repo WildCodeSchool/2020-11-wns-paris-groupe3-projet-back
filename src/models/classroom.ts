@@ -12,10 +12,7 @@ export const ClassroomSchema = new Schema(
       type: String,
     },
 
-    users: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+    users: [{ type: ObjectID, ref: "User" }],
   },
 
   { collection: "Classroom" }

@@ -4,10 +4,11 @@ import { Task } from "../models/task";
 import { User } from "../models/user";
 import { Role } from "../models/role";
 import { Speciality } from "../models/speciality";
-import { ErrorType, TaskType, UserType } from "allTypes";
+import { ClassroomType, ErrorType, TaskType, UserType } from "allTypes";
 import { createError, formatError } from "apollo-errors";
 import { GraphQLError } from "graphql";
 import { ApolloError } from "apollo-server-express";
+import { Classroom } from "../models/classroom";
 
 // Permet de générer des objectID aléatoire
 const ObjectID = mongodb.ObjectID;
@@ -75,27 +76,43 @@ const resolvers = {
   Mutation: {
     // Mutation qui permet de créer un utilisateur
     createUser: async (parent: any, args: any): Promise<Document> => {
-      try {
-        //  Find by Id (args.input.role) si n'est pas trouvé , renvoyer une erreur
-        //  Find by Id (args.input.speciality) si n'est pas trouvé , renvoyer une erreur
-        // sinon les données de l'utilisateur sont valides on peut le créer.
-        const roleIsFind = await Role.findById(args.input.role);
+      //  Find by Id (args.input.role) si n'est pas trouvé , renvoyer une erreur
+      //  Find by Id (args.input.speciality) si n'est pas trouvé , renvoyer une erreur
+      // sinon les données de l'utilisateur sont valides on peut le créer.
+      const roleIsFind = await Role.findById(args.input.role);
+      const specialityIsFind = await Speciality.findById(args.input.speciality);
 
-        if (!roleIsFind?._id) {
-          console.log("Erreur");
-          throw new GraphQLError("Role non trouvé");
-        } else {
-          const newUser: UserType = {
-            _id: new ObjectID(),
-            username: args.input.username,
-            role: args.input.role,
-            speciality: args.input.speciality,
-          };
-          //  On stock dans response , le résultat attendu de la création a partir du model User.
-          //  et avec les paramètres contenu dans newUser
-          const response = await User.create(newUser);
-          return response;
-        }
+      if (!roleIsFind?._id) {
+        console.log("Erreur");
+        throw new ApolloError("Role non trouvé", "ROLE_NOT_FOUND");
+      } else if (!specialityIsFind?._id) {
+        console.log("Erreur");
+        throw new ApolloError("Spécialité non trouvé", "SPECIALITY_NOT_FOUND");
+      } else {
+        const newUser: UserType = {
+          _id: new ObjectID(),
+          username: args.input.username,
+          role: args.input.role,
+          speciality: args.input.speciality,
+        };
+        //  On stock dans response , le résultat attendu de la création a partir du model User.
+        //  et avec les paramètres contenu dans newUser
+        const response = await User.create(newUser);
+        return response;
+      }
+    },
+
+    // Mutation permettant de créer une classe
+    createClassroom: async (parent: any, args: any): Promise<any> => {
+      try {
+        const newClassRoom: ClassroomType = {
+          _id: new ObjectID(),
+          classname: args.input.classname,
+          users: args.input.users,
+        };
+
+        const response = await Classroom.create(newClassRoom);
+        return response;
       } catch (e) {
         return e.message;
       }
