@@ -1,9 +1,9 @@
-import 'reflect-metadata';
-import express from 'express';
-import { getApolloServer } from './server';
+import "reflect-metadata";
+import express from "express";
+import { getApolloServer } from "./server";
 require("./mongo/config");
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 
 const main = async () => {
   const apolloServer = await getApolloServer();
@@ -12,9 +12,7 @@ const main = async () => {
   apolloServer.applyMiddleware({ app: expressServer });
 
   expressServer.listen(PORT, () =>
-    console.log(
-      `🚀 Serveur lancé sur: ${PORT}`
-    )
+    console.log(`🚀 Serveur lancé sur: ${PORT}`)
   );
 };
 
