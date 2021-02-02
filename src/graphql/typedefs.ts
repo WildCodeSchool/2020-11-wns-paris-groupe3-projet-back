@@ -17,6 +17,7 @@ const typeDefs = gql`
   type Task {
     _id: ID!
     taskname: String!
+    url: String!
     creation_date: DateTime!
     users: [User]
   }
@@ -102,7 +103,8 @@ const typeDefs = gql`
   }
 
   input InputTask {
-    taskname: String
+    taskname: String!
+    url: String!
     users: [ID]
   }
 

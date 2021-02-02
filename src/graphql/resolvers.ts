@@ -1,6 +1,8 @@
 import mongodb from "mongodb";
+import cloudinary from "cloudinary";
+
 import { Document } from "mongoose";
-// import { Task } from "../models/task";
+import { Task } from "../models/task";
 import { User } from "../models/user";
 import { Render } from "../models/render";
 // import { Role } from "../models/role";
@@ -8,7 +10,15 @@ import { Render } from "../models/render";
 // import { Classroom } from "../models/classroom";
 // import { ClassroomType, TaskType, UserType } from "allTypes";
 // import { ApolloError } from "apollo-server-express";
-import { RenderType } from "allTypes";
+import { RenderType, TaskType } from "allTypes";
+
+const cloudinaryConfig = () => {
+  cloudinary.v2.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+};
 
 // Permet de générer des objectID aléatoire
 const ObjectID = mongodb.ObjectID;
@@ -76,6 +86,27 @@ const resolvers = {
       return response;
     },
 
+    createTask: async (parent: any, args: any): Promise<Document> => {
+      cloudinaryConfig();
+      try {
+        const result = await cloudinary.v2.uploader.upload(args.input.url, {
+          allowed_formats: ["jpg", "png"],
+          folder: "EasyHomeworks",
+        });
+        const newTask: TaskType = {
+          _id: new ObjectID(),
+          taskname: args.input.taskname,
+          url: result.secure_url,
+          creation_date: Date.now(),
+          users: args.input.users,
+        };
+        const response = await Task.create(newTask);
+        return response;
+      } catch (e) {
+        return e.message;
+      }
+    },
+
     // Mutation qui permet de créer un utilisateur
     // createUser: async (parent: any, args: any): Promise<Document> => {
     //  Find by Id (args.input.role) si n'est pas trouvé , renvoyer une erreur
@@ -114,26 +145,6 @@ const resolvers = {
     //     };
 
     //     const response = await Classroom.create(newClassRoom);
-    //     return response;
-    //   } catch (e) {
-    //     return e.message;
-    //   }
-    // },
-
-    // Mutation permettant de créer une tâche
-    // createTask: async (parent: any, args: any): Promise<Document> => {
-    //   console.log("args", args);
-    //   try {
-    //     // 0n définit ce qui va correspondre à une nouvelle tâche et on le stock dans la variable newTask
-    //     const newTask: TaskType = {
-    //       _id: new ObjectID(),
-    //       taskname: args.input.taskname,
-    //       creation_date: Date.now(),
-    //       users: args.input.users,
-    //     };
-    //     //  On stock dans response , le résultat attendu de la création a partir du model Task.
-    //     //  et avec les paramètres contenu dans newTask
-    //     const response = await Task.create(newTask);
     //     return response;
     //   } catch (e) {
     //     return e.message;

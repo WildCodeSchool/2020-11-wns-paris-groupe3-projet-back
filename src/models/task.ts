@@ -14,7 +14,10 @@ export const TaskSchema = new Schema(
       type: String,
     },
 
-    // File
+    url: {
+      required: true,
+      type: String,
+    },
 
     creation_date: {
       required: true,

@@ -18,6 +18,7 @@ export type UserDetailsType = {
 export type TaskType = {
   _id: mongodb.ObjectID;
   taskname: string;
+  url: string;
   creation_date: number;
   users: Array<mongodb.ObjectID>;
 };
