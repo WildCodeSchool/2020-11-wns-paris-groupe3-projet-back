@@ -27,16 +27,18 @@ const resolvers = {
     createTask: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
-        const result = await cloudinary.v2.uploader.upload(args.input.url, {
-          allowed_formats: ["jpg", "png"],
-          folder: "EasyHomeworks",
-        });
+        const result = await cloudinary.v2.uploader.upload_large(
+          args.input.url,
+          {
+            folder: "EasyHomeworks",
+          }
+        );
         const newTask: TaskType = {
           _id: new ObjectID(),
           taskname: args.input.taskname,
           url: result.secure_url,
           creation_date: Date.now(),
-          user: args.input.user,
+          // user: args.input.user,
         };
         const response = await Task.create(newTask);
         return response;

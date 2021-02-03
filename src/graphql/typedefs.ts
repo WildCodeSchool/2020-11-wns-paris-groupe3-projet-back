@@ -19,7 +19,7 @@ const typeDefs = gql`
     taskname: String!
     url: String!
     creation_date: DateTime!
-    user: User
+    #user: User
   }
 
   type Role {
