@@ -136,7 +136,7 @@ const resolvers = {
     },
 
     deleteComment: async (parent: any, args: any): Promise<any> => {
-      let commentIsFind = await Comment.findById(args.id);
+      const commentIsFind = await Comment.findById(args.id);
 
       if (!commentIsFind?._id) {
         throw new ApolloError("Comment not found", "COMMENT_NOT_FOUND");
