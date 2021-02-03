@@ -6,8 +6,8 @@ import {
 } from "./mongo/config_db_testing";
 
 import { getApolloServer } from "./server";
-import { Task } from "./models/task";
-import { User } from "./models/user";
+import { Task } from "./models/Task";
+import { User } from "./models/User";
 
 describe("Apollo server", () => {
   let mutate: any;

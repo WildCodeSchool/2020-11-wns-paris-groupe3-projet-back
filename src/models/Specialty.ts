@@ -3,19 +3,19 @@ import mongodb from "mongodb";
 
 const ObjectID = mongodb.ObjectID;
 
-export const SpecialitySchema = new Schema(
+export const SpecialtySchema = new Schema(
   {
     _id: {
       type: ObjectID,
     },
 
-    speciality_name: {
+    specialty_name: {
       type: String,
       required: true,
     },
   },
 
-  { collection: "Speciality" }
+  { collection: "Specialty" }
 );
 
-export const Speciality = mongoose.model("Speciality", SpecialitySchema);
+export const Specialty = mongoose.model("Specialty", SpecialtySchema);

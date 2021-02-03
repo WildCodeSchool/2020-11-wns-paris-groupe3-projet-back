@@ -1,7 +1,7 @@
 // import mongodb from "mongodb";
 import { Document } from "mongoose";
-// import { Task } from "../models/task";
-import { User } from "../models/user";
+import { Task } from "../models/Task";
+import { User } from "../models/User";
 // import { Role } from "../models/role";
 // import { Speciality } from "../models/speciality";
 // import { ClassroomType, TaskType, UserType } from "allTypes";
@@ -22,7 +22,7 @@ const resolvers = {
     // Récupére tous les users de la db
     users: async (): Promise<Document[]> => await User.find({}).exec(),
     // Récupére toutes les tâches de la db
-    // tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
+    tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
     // Récupére tout les rôles (Student/Teacher/Admin) de la db
     // roles: async (): Promise<Document[]> => await Role.find({}).exec(),
     // Récupére toutes les spécialités (Matières) de la db
