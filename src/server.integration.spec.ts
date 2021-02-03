@@ -6,8 +6,8 @@ import {
 } from "./mongo/config_db_testing";
 
 import { getApolloServer } from "./server";
-import { Task } from "./models/Task";
-import { User } from "./models/User";
+import { Task } from "./models";
+import { User } from "./models";
 
 describe("Apollo server", () => {
   let mutate: any;
@@ -47,7 +47,7 @@ describe("Apollo server", () => {
         }
       `,
       });
-
+      
       expect(response.data).toEqual({
         users: [
           {

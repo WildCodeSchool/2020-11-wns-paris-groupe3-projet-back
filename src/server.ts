@@ -1,5 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
-import resolvers from "./graphql/resolvers";
+import resolvers from "./resolvers";
 import typeDefs from "./graphql/typedefs";
 
 export async function getApolloServer(): Promise<ApolloServer> {
