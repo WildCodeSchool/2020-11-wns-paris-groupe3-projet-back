@@ -19,7 +19,7 @@ const typeDefs = gql`
     taskname: String!
     url: String!
     creation_date: DateTime!
-    users: [User]
+    user: User
   }
 
   type Role {
@@ -87,6 +87,7 @@ const typeDefs = gql`
     _id: ID!
     task: ID!
     url: String!
+    user: ID!
     creation_date: DateTime!
   }
 
@@ -106,7 +107,7 @@ const typeDefs = gql`
   input InputTask {
     taskname: String!
     url: String!
-    users: [ID]
+    user: ID
   }
 
   input InputClassroom {

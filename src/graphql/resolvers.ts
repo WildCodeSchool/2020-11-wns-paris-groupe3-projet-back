@@ -36,7 +36,7 @@ const resolvers = {
           taskname: args.input.taskname,
           url: result.secure_url,
           creation_date: Date.now(),
-          users: args.input.users,
+          user: args.input.user,
         };
         const response = await Task.create(newTask);
         return response;

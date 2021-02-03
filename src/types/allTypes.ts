@@ -20,7 +20,7 @@ export type TaskType = {
   taskname: string;
   url: string;
   creation_date: number;
-  users: Array<mongodb.ObjectID>;
+  user: mongodb.ObjectID;
 };
 
 export type TaskAssignation = {

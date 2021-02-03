@@ -21,6 +21,11 @@ export const CorrectionSchema = new Schema(
     creation_date: {
       type: Date,
     },
+
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
 
   { collection: "Correction" }
