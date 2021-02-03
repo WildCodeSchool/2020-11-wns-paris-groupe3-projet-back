@@ -14,7 +14,9 @@ export const CorrectionSchema = new Schema(
       ref: "Task",
     },
 
-    // FILE
+    url: {
+      type: String,
+    },
 
     creation_date: {
       type: Date,

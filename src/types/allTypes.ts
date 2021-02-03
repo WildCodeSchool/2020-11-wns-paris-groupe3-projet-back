@@ -64,8 +64,10 @@ export type GradeType = {
 
 export type CorrectionType = {
   _id: mongodb.ObjectID;
+  user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  creation_date: Date;
+  url: string;
+  creation_date: number;
 };
 
 export type CommentType = {

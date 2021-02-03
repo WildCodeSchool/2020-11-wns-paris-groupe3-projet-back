@@ -86,6 +86,7 @@ const typeDefs = gql`
   type Correction {
     _id: ID!
     task: ID!
+    url: String!
     creation_date: DateTime!
   }
 
@@ -116,7 +117,13 @@ const typeDefs = gql`
   input InputRender {
     user: ID!
     task: ID!
-    url: String
+    url: String!
+  }
+
+  input InputCorrection {
+    user: ID!
+    task: ID!
+    url: String!
   }
 
   type Query {
@@ -134,6 +141,7 @@ const typeDefs = gql`
     createTask(input: InputTask): Task
     createClassroom(input: InputClassroom): Classroom
     createRender(input: InputRender): Render
+    createCorrection(input: InputCorrection): Correction
   }
 `;
 
