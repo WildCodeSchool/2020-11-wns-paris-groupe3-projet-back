@@ -18,4 +18,4 @@ export const specialitySchema = new Schema(
   { collection: "speciality" }
 );
 
-export const speciality = mongoose.model("speciality", specialitySchema);
+export const Speciality = mongoose.model("speciality", specialitySchema);

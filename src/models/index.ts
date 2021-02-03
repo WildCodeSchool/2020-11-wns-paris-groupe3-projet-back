@@ -6,7 +6,7 @@ export { Grade } from "./Grade";
 export { Group } from "./Group";
 export { Render } from "./Render";
 export { Role } from "./Role";
-export { speciality } from "./speciality";
+export { Speciality } from "./Speciality";
 export { Task } from "./Task";
 export { TaskAssignation } from "./TaskAssignation";
 export { User } from "./User";
