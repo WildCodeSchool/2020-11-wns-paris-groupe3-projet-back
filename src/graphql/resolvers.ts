@@ -119,6 +119,7 @@ const resolvers = {
       }
     },
 
+    // Mutation for update a comment
     updateComment: async (parent: any, args: any): Promise<any> => {
       let commentIsFind = await Comment.findById(args.id);
 
@@ -129,11 +130,20 @@ const resolvers = {
         const update = { content: args.input.content };
 
         await Comment.updateOne(filter, update);
-
         commentIsFind = await Comment.findById(args.id);
-
         return commentIsFind;
       }
+    },
+
+    deleteComment: async (parent: any, args: any): Promise<any> => {
+      let commentIsFind = await Comment.findById(args.id);
+
+      if (!commentIsFind?._id) {
+        throw new ApolloError("Comment not found", "COMMENT_NOT_FOUND");
+      } else {
+        await Comment.deleteOne(commentIsFind);
+      }
+      return commentIsFind;
     },
 
     // Mutation permettant de créer une classe

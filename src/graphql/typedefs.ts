@@ -136,6 +136,7 @@ const typeDefs = gql`
     createClassroom(input: InputClassroom): Classroom
     createComment(input: InputComment): Comment
     updateComment(id: ID!, input: UpdateComment): Comment
+    deleteComment(id: ID!): Comment
   }
 `;
 

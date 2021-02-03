@@ -71,7 +71,7 @@ export type CommentType = {
   user: mongodb.ObjectID;
   task: mongodb.ObjectID;
   content: string;
-  creation_date: Number;
+  creation_date: number;
 };
 
 export type ClassroomType = {
