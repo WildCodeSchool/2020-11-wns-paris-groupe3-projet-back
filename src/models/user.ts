@@ -22,7 +22,7 @@ export const UserSchema = new Schema(
 
     speciality: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Specialty",
+      ref: "speciality",
     },
   },
 

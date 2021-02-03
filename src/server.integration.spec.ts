@@ -47,7 +47,7 @@ describe("Apollo server", () => {
         }
       `,
       });
-      
+
       expect(response.data).toEqual({
         users: [
           {
