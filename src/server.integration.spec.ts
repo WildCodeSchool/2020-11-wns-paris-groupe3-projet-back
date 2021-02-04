@@ -1,5 +1,5 @@
 import { createTestClient } from "apollo-server-testing";
-import { gql } from "apollo-server-express";
+
 import {
   connect,
   closeDatabase,
@@ -7,7 +7,6 @@ import {
 } from "./mongo/config_db_testing";
 
 import { getApolloServer } from "./server";
-import { Task } from "./models/task";
 import { User } from "./models/user";
 import { Comment } from "./models/comment";
 
@@ -118,12 +117,42 @@ describe("Apollo server", () => {
           `,
       });
 
-      console.log("Reponse", response);
-
       expect(response.data).toMatchObject({
         updateComment: {
           _id: "5ff492076a3476547d8cedcc",
           content: "TacheDeTest1",
+        },
+      });
+    });
+  });
+
+  describe("Mutation for delete a comment", () => {
+    it("delete a comment", async () => {
+      const commentOne = Comment.create({
+        _id: "5ff492076a3476547d8cedcc",
+        user: "6ff492076a3476547d8cedde",
+        task: "5ff739afc976ff15d97eb12f",
+        content: "Pierre",
+      });
+      (await commentOne).save();
+
+      const response = await mutate({
+        mutation: `
+            mutation {
+              deleteComment(
+                _id : "5ff492076a3476547d8cedcc"
+              ) {
+                _id
+                content
+              }
+            }
+          `,
+      });
+
+      expect(response.data).toMatchObject({
+        deleteComment: {
+          _id: "5ff492076a3476547d8cedcc",
+          content: "Pierre",
         },
       });
     });
