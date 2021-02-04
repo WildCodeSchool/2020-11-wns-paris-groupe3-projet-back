@@ -8,10 +8,14 @@ import { Render } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-export const createNewRender = (task: any, user: any, result: any) => {
+export const createNewRender = (
+  task: mongodb.ObjectID,
+  user: mongodb.ObjectID,
+  result: string
+): Promise<Document> => {
   const newRender: RenderType = {
     _id: new ObjectID(),
-    url: result.secure_url,
+    url: result,
     task: task,
     user: user,
     creation_date: Date.now(),
@@ -28,7 +32,7 @@ export const renderResolvers = {
         const response = await createNewRender(
           args.input.task,
           args.input.user,
-          result
+          result.secure_url
         );
         return response;
       } catch (e) {
