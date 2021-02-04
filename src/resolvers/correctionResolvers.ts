@@ -8,20 +8,29 @@ import { Correction } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
+const createNewCorrection = (task: any, user: any, result: any) => {
+  const newCorrection: CorrectionType = {
+    _id: new ObjectID(),
+    url: result.secure_url,
+    task: task,
+    user: user,
+    creation_date: Date.now(),
+  };
+  return Correction.create(newCorrection);
+};
+
 export const correctionResolvers = {
   Mutation: {
     createCorrection: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
         const result = await uploadToCloudinary(args.input.url);
-        const newCorrection: CorrectionType = {
-          _id: new ObjectID(),
-          url: result.secure_url,
-          creation_date: Date.now(),
-          task: args.input.task,
-          user: args.input.user,
-        };
-        const response = await Correction.create(newCorrection);
+        const response = await createNewCorrection(
+          args.input.task,
+          args.input.user,
+          result
+        );
+
         return response;
       } catch (e) {
         return e.message;

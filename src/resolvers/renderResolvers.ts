@@ -8,20 +8,28 @@ import { Render } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
+const createNewRender = (task: any, user: any, result: any) => {
+  const newRender: RenderType = {
+    _id: new ObjectID(),
+    url: result.secure_url,
+    task: task,
+    user: user,
+    creation_date: Date.now(),
+  };
+  return Render.create(newRender);
+};
+
 export const renderResolvers = {
   Mutation: {
     createRender: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
         const result = await uploadToCloudinary(args.input.url);
-        const newRender: RenderType = {
-          _id: new ObjectID(),
-          url: result.secure_url,
-          creation_date: Date.now(),
-          task: args.input.task,
-          user: args.input.user,
-        };
-        const response = await Render.create(newRender);
+        const response = await createNewRender(
+          args.input.task,
+          args.input.user,
+          result
+        );
         return response;
       } catch (e) {
         return e.message;

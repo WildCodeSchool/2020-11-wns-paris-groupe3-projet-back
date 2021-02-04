@@ -8,6 +8,17 @@ import { Task } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
+const createNewTask = (taskname: any, result: any) => {
+  const newTask: TaskType = {
+    _id: new ObjectID(),
+    taskname: taskname,
+    url: result.secure_url,
+    creation_date: Date.now(),
+    // user: args.input.user,
+  };
+  return Task.create(newTask);
+};
+
 export const taskResolvers = {
   Query: {
     tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
@@ -18,14 +29,7 @@ export const taskResolvers = {
       cloudinaryConfig();
       try {
         const result = await uploadToCloudinary(args.input.url);
-        const newTask: TaskType = {
-          _id: new ObjectID(),
-          taskname: args.input.taskname,
-          url: result.secure_url,
-          creation_date: Date.now(),
-          // user: args.input.user,
-        };
-        const response = await Task.create(newTask);
+        const response = await createNewTask(args.input.taskname, result);
         return response;
       } catch (e) {
         return e.message;
