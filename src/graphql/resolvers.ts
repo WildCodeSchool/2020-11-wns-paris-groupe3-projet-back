@@ -1,8 +1,7 @@
 import mongodb from "mongodb";
 import { Document } from "mongoose";
-import cloudinary from "cloudinary";
 
-import { cloudinaryConfig } from "../utils/cloudinary";
+import { cloudinaryConfig, uploadToCloudinary } from "../utils/cloudinary";
 
 import { Task } from "../models/task";
 import { User } from "../models/user";
@@ -21,14 +20,7 @@ const resolvers = {
     createTask: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
-        let result;
-        try {
-          result = await cloudinary.v2.uploader.upload(args.input.url, {
-            folder: "EasyHomeworks",
-          });
-        } catch (e) {
-          return e.message;
-        }
+        const result = await uploadToCloudinary(args.input.url);
         const newTask: TaskType = {
           _id: new ObjectID(),
           taskname: args.input.taskname,
@@ -46,14 +38,7 @@ const resolvers = {
     createRender: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
-        let result;
-        try {
-          result = await cloudinary.v2.uploader.upload(args.input.url, {
-            folder: "EasyHomeworks",
-          });
-        } catch (e) {
-          return e.message;
-        }
+        const result = await uploadToCloudinary(args.input.url);
         const newRender: RenderType = {
           _id: new ObjectID(),
           url: result.secure_url,
@@ -71,14 +56,7 @@ const resolvers = {
     createCorrection: async (parent: any, args: any): Promise<Document> => {
       cloudinaryConfig();
       try {
-        let result;
-        try {
-          result = await cloudinary.v2.uploader.upload(args.input.url, {
-            folder: "EasyHomeworks",
-          });
-        } catch (e) {
-          return e.message;
-        }
+        const result = await uploadToCloudinary(args.input.url);
         const newCorrection: CorrectionType = {
           _id: new ObjectID(),
           url: result.secure_url,
