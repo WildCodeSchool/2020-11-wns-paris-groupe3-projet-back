@@ -1,15 +1,15 @@
-import { Authentication } from "./Authentication";
-import { Classroom } from "./Classroom";
-import { Comment } from "./Comment";
-import { Correction } from "./Correction";
-import { Grade } from "./Grade";
-import { Group } from "./Group";
-import { Render } from "./Render";
-import { Role } from "./Role";
+import { Authentication } from "./authentication";
+import { Classroom } from "./classroom";
+import { Comment } from "./comment";
+import { Correction } from "./correction";
+import { Grade } from "./grade";
+import { Group } from "./group";
+import { Render } from "./render";
+import { Role } from "./role";
 import { Speciality } from "./Speciality";
-import { Task } from "./Task";
+import { Task } from "./task";
 import { TaskAssignation } from "./TaskAssignation";
-import { User } from "./User";
+import { User } from "./user";
 import { UserDetails } from "./UserDetails";
 
 export {
