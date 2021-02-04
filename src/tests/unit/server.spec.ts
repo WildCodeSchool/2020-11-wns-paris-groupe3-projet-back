@@ -1,24 +1,13 @@
 import { createTestClient } from "apollo-server-testing";
-import {
-  connect,
-  closeDatabase,
-  clearDatabase,
-} from "./mongo/config_db_testing";
 
-import { getApolloServer } from "./server";
-import { User } from "./models/user";
+import { getApolloServer } from "../../server";
+import { User } from "../../models";
 
 describe("Apollo server", () => {
   let query: any;
   beforeEach(async () => {
-    await connect();
     const testClient = createTestClient(await getApolloServer());
     query = testClient.query;
-  });
-
-  afterEach(async () => {
-    await clearDatabase();
-    await closeDatabase();
   });
 
   describe("query users", () => {

@@ -31,7 +31,7 @@ export type TaskAssignation = {
   affectedTo: Array<mongodb.ObjectID>;
 };
 
-export type SpecialityType = {
+export type specialityType = {
   _id: mongodb.ObjectID;
   speciality_name: string;
 };

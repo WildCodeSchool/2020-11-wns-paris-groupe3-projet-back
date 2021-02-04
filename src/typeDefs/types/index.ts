@@ -1,0 +1,13 @@
+export { authentication } from "./authentication";
+export { classroom } from "./classroom";
+export { comment } from "./comment";
+export { correction } from "./correction";
+export { grade } from "./grade";
+export { group } from "./group";
+export { render } from "./render";
+export { role } from "./role";
+export { speciality } from "./speciality";
+export { task } from "./task";
+export { taskAssignation } from "./taskAssignation";
+export { user } from "./user";
+export { userDetails } from "./userDetails";
