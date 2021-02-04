@@ -1,13 +1,29 @@
-export { Authentication } from "./Authentication";
-export { Classroom } from "./Classroom";
-export { Comment } from "./Comment";
-export { Correction } from "./Correction";
-export { Grade } from "./Grade";
-export { Group } from "./Group";
-export { Render } from "./Render";
-export { Role } from "./Role";
-export { Speciality } from "./Speciality";
-export { Task } from "./Task";
-export { TaskAssignation } from "./TaskAssignation";
-export { User } from "./User";
-export { UserDetails } from "./UserDetails";
+import { Authentication } from "./Authentication";
+import { Classroom } from "./Classroom";
+import { Comment } from "./Comment";
+import { Correction } from "./Correction";
+import { Grade } from "./Grade";
+import { Group } from "./Group";
+import { Render } from "./Render";
+import { Role } from "./Role";
+import { Speciality } from "./Speciality";
+import { Task } from "./Task";
+import { TaskAssignation } from "./TaskAssignation";
+import { User } from "./User";
+import { UserDetails } from "./UserDetails";
+
+export {
+  Authentication,
+  Classroom,
+  Comment,
+  Correction,
+  Grade,
+  Group,
+  Render,
+  Role,
+  Speciality,
+  Task,
+  TaskAssignation,
+  User,
+  UserDetails,
+};
