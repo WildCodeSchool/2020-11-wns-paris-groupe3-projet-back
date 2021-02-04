@@ -121,13 +121,13 @@ const typeDefs = gql`
   }
 
   type Query {
-    userById(id: ID!): User
-    taskById(id: ID!): Task
+    userById(_id: ID!): User
+    taskById(_id: ID!): Task
     users: [User]
     tasks: [Task]
     roles: [Role]
     specialities: [Speciality]
-    allTasksByUser(id: ID!): [Task]
+    allTasksByUser(_id: ID!): [Task]
   }
 
   type Mutation {
@@ -135,8 +135,8 @@ const typeDefs = gql`
     createTask(input: InputTask): Task
     createClassroom(input: InputClassroom): Classroom
     createComment(input: InputComment): Comment
-    updateComment(id: ID!, input: UpdateComment): Comment
-    deleteComment(id: ID!): Comment
+    updateComment(_id: ID!, input: UpdateComment): Comment
+    deleteComment(_id: ID!): Comment
   }
 `;
 

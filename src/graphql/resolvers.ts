@@ -102,11 +102,7 @@ const resolvers = {
       const userIsFind = await User.findById(args.input.user);
       const taskIsFind = await Task.findById(args.input.task);
 
-      if (!userIsFind?._id) {
-        throw new ApolloError("User not found", "USER_NOT_FOUND");
-      } else if (!taskIsFind?._id) {
-        throw new ApolloError("Task not found", "TASK_NOT_FOUND");
-      } else {
+      try {
         const newComment: CommentType = {
           _id: new ObjectID(),
           user: args.input.user,
@@ -116,34 +112,40 @@ const resolvers = {
         };
         const response = await Comment.create(newComment);
         return response;
+      } catch {
+        if (!userIsFind) {
+          throw new ApolloError("User not found", "USER_NOT_FOUND");
+        } else if (!taskIsFind) {
+          throw new ApolloError("Task not found", "TASK_NOT_FOUND");
+        }
       }
     },
 
     // Mutation for update a comment
     updateComment: async (parent: any, args: any): Promise<any> => {
-      let commentIsFind = await Comment.findById(args.id);
+      let commentIsFind = await Comment.findById(args._id);
 
-      if (!commentIsFind?._id) {
-        throw new ApolloError("Comment not found", "COMMENT_NOT_FOUND");
-      } else {
+      try {
         const filter = { _id: commentIsFind };
         const update = { content: args.input.content };
 
         await Comment.updateOne(filter, update);
-        commentIsFind = await Comment.findById(args.id);
+        commentIsFind = await Comment.findById(args._id);
         return commentIsFind;
+      } catch {
+        throw new ApolloError("Comment not found", "COMMENT_NOT_FOUND");
       }
     },
 
     deleteComment: async (parent: any, args: any): Promise<any> => {
-      const commentIsFind = await Comment.findById(args.id);
+      const commentIsFind = await Comment.findById(args._id);
 
-      if (!commentIsFind?._id) {
+      try {
+        await Comment.deleteOne({ _id: commentIsFind?._id });
+        return commentIsFind;
+      } catch {
         throw new ApolloError("Comment not found", "COMMENT_NOT_FOUND");
-      } else {
-        await Comment.deleteOne(commentIsFind);
       }
-      return commentIsFind;
     },
 
     // Mutation permettant de créer une classe
