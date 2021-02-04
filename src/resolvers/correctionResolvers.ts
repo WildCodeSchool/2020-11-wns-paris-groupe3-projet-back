@@ -8,7 +8,7 @@ import { Correction } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-const createNewCorrection = (task: any, user: any, result: any) => {
+export const createNewCorrection = (task: any, user: any, result: any) => {
   const newCorrection: CorrectionType = {
     _id: new ObjectID(),
     url: result.secure_url,

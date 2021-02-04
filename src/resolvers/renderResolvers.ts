@@ -8,7 +8,7 @@ import { Render } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-const createNewRender = (task: any, user: any, result: any) => {
+export const createNewRender = (task: any, user: any, result: any) => {
   const newRender: RenderType = {
     _id: new ObjectID(),
     url: result.secure_url,

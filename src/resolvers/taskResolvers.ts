@@ -8,11 +8,14 @@ import { Task } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-const createNewTask = (taskname: any, result: any) => {
+export const createNewTask = (
+  taskname: string,
+  result: string
+): Promise<Document> => {
   const newTask: TaskType = {
     _id: new ObjectID(),
     taskname: taskname,
-    url: result.secure_url,
+    url: result,
     creation_date: Date.now(),
     // user: args.input.user,
   };
@@ -29,7 +32,10 @@ export const taskResolvers = {
       cloudinaryConfig();
       try {
         const result = await uploadToCloudinary(args.input.url);
-        const response = await createNewTask(args.input.taskname, result);
+        const response = await createNewTask(
+          args.input.taskname,
+          result.secure_url
+        );
         return response;
       } catch (e) {
         return e.message;
