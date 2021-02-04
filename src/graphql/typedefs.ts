@@ -137,6 +137,19 @@ const typeDefs = gql`
     createComment(input: InputComment): Comment
     updateComment(_id: ID!, input: UpdateComment): Comment
     deleteComment(_id: ID!): Comment
+    tasks: [Task]
+    roles: [Role]
+    specialities: [Speciality]
+    allTasksByUser(_id: ID!): [Task]
+  }
+
+  type Mutation {
+    createUser(input: InputUser): User
+    createTask(input: InputTask): Task
+    createClassroom(input: InputClassroom): Classroom
+    createComment(input: InputComment): Comment
+    updateComment(_id: ID!, input: UpdateComment): Comment
+    deleteComment(_id: ID!): Comment
   }
 `;
 
