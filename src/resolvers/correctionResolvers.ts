@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 
 import { cloudinaryConfig, uploadToCloudinary } from "../utils/cloudinary";
 
-import { CorrectionType } from "../types/type";
+import { CorrectionType, InputCorrectionType } from "../types/type";
 import { Correction } from "../models";
 
 const ObjectID = mongodb.ObjectID;
@@ -25,13 +25,16 @@ export const createNewCorrection = (
 
 export const correctionResolvers = {
   Mutation: {
-    createCorrection: async (parent: any, args: any): Promise<Document> => {
+    createCorrection: async (
+      parent: undefined,
+      { input: { task, user, url } }: InputCorrectionType
+    ): Promise<Document> => {
       cloudinaryConfig();
       try {
-        const result = await uploadToCloudinary(args.input.url);
+        const result = await uploadToCloudinary(url);
         const response = await createNewCorrection(
-          args.input.task,
-          args.input.user,
+          task,
+          user,
           result.secure_url
         );
         return response;

@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 
 import { cloudinaryConfig, uploadToCloudinary } from "../utils/cloudinary";
 
-import { RenderType } from "../types/type";
+import { RenderType, InputRenderType } from "../types/type";
 import { Render } from "../models";
 
 const ObjectID = mongodb.ObjectID;
@@ -25,15 +25,14 @@ export const createNewRender = (
 
 export const renderResolvers = {
   Mutation: {
-    createRender: async (parent: any, args: any): Promise<Document> => {
+    createRender: async (
+      parent: undefined,
+      { input: { task, user, url } }: InputRenderType
+    ): Promise<Document> => {
       cloudinaryConfig();
       try {
-        const result = await uploadToCloudinary(args.input.url);
-        const response = await createNewRender(
-          args.input.task,
-          args.input.user,
-          result.secure_url
-        );
+        const result = await uploadToCloudinary(url);
+        const response = await createNewRender(task, user, result.secure_url);
         return response;
       } catch (e) {
         return e.message;

@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 
 import { cloudinaryConfig, uploadToCloudinary } from "../utils/cloudinary";
 
-import { TaskType } from "../types/type";
+import { TaskType, InputTaskType } from "../types/type";
 import { Task } from "../models";
 
 const ObjectID = mongodb.ObjectID;
@@ -28,14 +28,14 @@ export const taskResolvers = {
   },
 
   Mutation: {
-    createTask: async (parent: any, args: any): Promise<Document> => {
+    createTask: async (
+      parent: undefined,
+      { input: { url, taskname } }: InputTaskType
+    ): Promise<Document> => {
       cloudinaryConfig();
       try {
-        const result = await uploadToCloudinary(args.input.url);
-        const response = await createNewTask(
-          args.input.taskname,
-          result.secure_url
-        );
+        const result = await uploadToCloudinary(url);
+        const response = await createNewTask(taskname, result.secure_url);
         return response;
       } catch (e) {
         return e.message;

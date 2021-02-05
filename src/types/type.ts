@@ -90,3 +90,27 @@ export type AuthenticationType = {
   salt: string;
   user: mongodb.ObjectID;
 };
+
+export type InputTaskType = {
+  input: {
+    taskname: string;
+    url: string;
+    // user: mongodb.ObjectID;
+  };
+};
+
+export type InputRenderType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
+};
+
+export type InputCorrectionType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
+};
