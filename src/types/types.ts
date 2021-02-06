@@ -18,8 +18,9 @@ export type UserDetailsType = {
 export type TaskType = {
   _id: mongodb.ObjectID;
   taskname: string;
+  url: string;
   creation_date: number;
-  users: Array<mongodb.ObjectID>;
+  // user: mongodb.ObjectID;
 };
 
 export type TaskAssignation = {
@@ -30,7 +31,7 @@ export type TaskAssignation = {
   affectedTo: Array<mongodb.ObjectID>;
 };
 
-export type specialityType = {
+export type SpecialityType = {
   _id: mongodb.ObjectID;
   speciality_name: string;
 };

@@ -4,12 +4,14 @@ export const task = gql`
   type Task {
     _id: ID!
     taskname: String!
+    url: String!
     creation_date: DateTime!
-    users: [User]
+    #user: User
   }
 
   input InputTask {
-    taskname: String
-    users: [ID]
+    taskname: String!
+    url: String!
+    # user: User
   }
 `;
