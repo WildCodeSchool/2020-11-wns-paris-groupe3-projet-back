@@ -23,12 +23,20 @@ export type TaskType = {
   // user: mongodb.ObjectID;
 };
 
-export type TaskAssignation = {
+export type TaskAssignationType = {
   _id: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  publication_date: Date;
-  end_date: Date;
-  affectedTo: Array<mongodb.ObjectID>;
+  classroom: mongodb.ObjectID;
+  // publication_date: Date;
+  // end_date: Date;
+  // affectedTo: Array<mongodb.ObjectID>;
+};
+
+export type InputTaskAssignation = {
+  input: {
+    taskId: string;
+    classroomId: string;
+  };
 };
 
 export type SpecialityType = {

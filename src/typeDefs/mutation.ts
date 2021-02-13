@@ -5,5 +5,6 @@ export const mutation = gql`
     createUser(input: InputUser): User
     createClassroom(input: InputClassroom): Classroom
     createTask(input: InputTask): Task
+    createAssignation(input: InputTaskAssignation): TaskAssignation!
   }
 `;

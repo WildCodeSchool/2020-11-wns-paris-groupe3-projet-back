@@ -9,5 +9,6 @@ export const query = gql`
     allTasksByUser(id: ID!): [Task]
     roles: [Role]
     specialties: [speciality]
+    classrooms: [Classroom]
   }
 `;
