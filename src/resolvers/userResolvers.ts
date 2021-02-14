@@ -6,16 +6,15 @@ import { UserInputError } from "apollo-server-express";
 
 import { validateInputRegister, validateInputLogin } from "../utils/validators";
 import {
-  UserType,
-  TokenType,
+  UserDetailsType,
   InputLoginType,
   InputRegisterType,
 } from "../types/types";
-import { User } from "../models";
+import { User, UserDetails } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-const generateToken = (user: TokenType) => {
+const generateToken = (user: UserDetailsType) => {
   return jwt.sign(
     {
       id: user._id,
@@ -36,7 +35,7 @@ export const createNewUser = (
   email: string,
   password: string
 ): Promise<Document> => {
-  const newUser: UserType = {
+  const newUser: UserDetailsType = {
     _id: new ObjectID(),
     firstname,
     lastname,
@@ -44,7 +43,7 @@ export const createNewUser = (
     password,
     creation_date: Date.now(),
   };
-  return User.create(newUser);
+  return UserDetails.create(newUser);
 };
 
 export const userResolvers = {
@@ -62,7 +61,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user: any = await User.findOne({ email });
+      const user: any = await UserDetails.findOne({ email });
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User not found", { errors });
@@ -99,7 +98,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user = await User.findOne({ email });
+      const user = await UserDetails.findOne({ email });
       if (user) {
         throw new UserInputError("Email is already taken", {
           errors: {

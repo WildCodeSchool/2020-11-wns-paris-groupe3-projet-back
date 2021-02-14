@@ -1,5 +1,4 @@
 import {
-  authentication,
   comment,
   classroom,
   correction,
@@ -21,7 +20,6 @@ const typeDefs = [
   query,
   mutation,
   shared,
-  authentication,
   comment,
   classroom,
   correction,

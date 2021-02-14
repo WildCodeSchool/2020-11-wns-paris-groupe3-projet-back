@@ -2,8 +2,8 @@ import { gql } from "apollo-server-express";
 
 export const mutation = gql`
   type Mutation {
-    register(input: InputRegister!): User!
-    login(email: String!, password: String!): User!
+    register(input: InputRegister!): UserDetails!
+    login(email: String!, password: String!): UserDetails!
     createClassroom(input: InputClassroom): Classroom
     createTask(input: InputTask): Task
   }

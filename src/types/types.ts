@@ -2,6 +2,14 @@ import mongodb from "mongodb";
 
 export type UserType = {
   _id: mongodb.ObjectID;
+  username: string;
+  role: mongodb.ObjectID;
+  speciality: mongodb.ObjectID;
+  user: mongodb.ObjectID;
+};
+
+export type UserDetailsType = {
+  _id: mongodb.ObjectID;
   firstname: string;
   lastname: string;
   email: string;
@@ -26,24 +34,9 @@ export type InputLoginType = {
   password: string;
 };
 
-export type TokenType = {
-  _id: mongodb.ObjectID;
-  firstname: string;
-  lastname: string;
-  email: string;
-};
-
 export type InputRegisterLoginErrorsType = {
   errors: { [key: string]: string };
   valid: boolean;
-};
-
-export type UserDetailsType = {
-  _id: mongodb.ObjectID;
-  username: string;
-  role: mongodb.ObjectID;
-  speciality: mongodb.ObjectID;
-  user: mongodb.ObjectID;
 };
 
 export type TaskType = {

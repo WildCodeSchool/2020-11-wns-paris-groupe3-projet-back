@@ -3,24 +3,15 @@ import { gql } from "apollo-server-express";
 export const user = gql`
   type User {
     _id: ID
-    firstname: String!
-    lastname: String!
-    email: String!
-    password: String!
-    token: String!
-    creation_date: DateTime
+    username: String!
+    role: Role
+    speciality: ID
+    user: ID!
   }
 
-  input InputRegister {
-    firstname: String!
-    lastname: String!
-    email: String!
-    password: String!
-    confirmPassword: String!
-  }
-
-  input InputLogin {
-    email: String!
-    password: String!
+  input InputUser {
+    username: String!
+    role: ID!
+    speciality: ID!
   }
 `;

@@ -1,4 +1,3 @@
-export { Authentication } from "./Authentication";
 export { Classroom } from "./Classroom";
 export { Comment } from "./Comment";
 export { Correction } from "./Correction";
