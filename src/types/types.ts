@@ -2,16 +2,47 @@ import mongodb from "mongodb";
 
 export type UserType = {
   _id: mongodb.ObjectID;
-  username: string;
-  role: mongodb.ObjectID;
-  speciality: mongodb.ObjectID;
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  creation_date: number;
 };
 
-export type UserDetailsType = {
+export type InputRegisterType = {
+  input: {
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
+  errors: { [key: string]: string };
+  valid: boolean;
+};
+
+export type InputLoginType = {
+  email: string;
+  password: string;
+};
+
+export type TokenType = {
   _id: mongodb.ObjectID;
   firstname: string;
   lastname: string;
   email: string;
+};
+
+export type InputRegisterLoginErrorsType = {
+  errors: { [key: string]: string };
+  valid: boolean;
+};
+
+export type UserDetailsType = {
+  _id: mongodb.ObjectID;
+  username: string;
+  role: mongodb.ObjectID;
+  speciality: mongodb.ObjectID;
   user: mongodb.ObjectID;
 };
 
@@ -78,11 +109,4 @@ export type ClassroomType = {
   _id: mongodb.ObjectID;
   classname: string;
   users: Array<mongodb.ObjectID>;
-};
-
-export type AuthenticationType = {
-  _id: mongodb.ObjectID;
-  password: string;
-  salt: string;
-  user: mongodb.ObjectID;
 };

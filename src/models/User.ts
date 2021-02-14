@@ -9,20 +9,28 @@ export const UserSchema = new Schema(
       type: ObjectID,
     },
 
-    username: {
+    firstname: {
       type: String,
       required: true,
     },
 
-    role: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: "Role",
+    lastname: {
+      type: String,
+      required: true,
     },
 
-    speciality: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "speciality",
+    email: {
+      type: String,
+      required: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    creation_date: {
+      type: Date,
     },
   },
 
