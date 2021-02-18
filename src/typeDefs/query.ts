@@ -10,5 +10,6 @@ export const query = gql`
     roles: [Role]
     specialties: [speciality]
     classrooms: [Classroom]
+    tasksAssignations: [TaskAssignation]
   }
 `;

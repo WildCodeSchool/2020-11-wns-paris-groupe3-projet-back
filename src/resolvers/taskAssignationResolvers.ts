@@ -1,62 +1,52 @@
 import mongodb from "mongodb";
 import { Document } from "mongoose";
 
-import {
-  TaskAssignationType,
-  ClassroomType,
-  InputTaskAssignation,
-} from "../types/types";
+import { TaskAssignationType, InputTaskAssignation } from "../types/types";
 import { Task, Classroom, TaskAssignation } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
 export const createNewAssignation = (
   task: mongodb.ObjectID,
-  classroom: mongodb.ObjectID
+  end_date: Date,
+  affectedTo: mongodb.ObjectID
 ): Promise<Document> => {
   const newAssignation: TaskAssignationType = {
     _id: new ObjectID(),
     task,
-    classroom,
+    end_date,
+    affectedTo,
   };
   return TaskAssignation.create(newAssignation);
 };
 
 export const taskAssignationResolvers = {
-  Classroom: {
-    users: async (classroom: ClassroomType): Promise<Document[]> => {
-      return (await classroom.populate("users").execPopulate()).users;
-    },
-  },
-
   Query: {
-    classrooms: async (): Promise<Document[]> =>
-      await Classroom.find({}).exec(),
+    tasksAssignations: async (): Promise<Document[]> =>
+      await TaskAssignation.find({})
+        .populate("affectedTo")
+        .populate("task")
+        .exec(),
   },
 
   Mutation: {
     createAssignation: async (
       parent: undefined,
-      args: any
+      { input: { task, end_date, affectedTo } }: InputTaskAssignation
     ): Promise<Document> => {
-      console.log("***args", args);
+      const fetchTask: any = await Task.findOne({ _id: task });
+      const fetchClass: any = await Classroom.findOne({ _id: affectedTo })
+        .populate("users")
+        .exec();
       try {
-        const task = await Task.findById({ _id: args.input.task });
-        const classroom = await Classroom.findById({
-          _id: args.input.classroom,
-        });
-        const result = await createNewAssignation(task, classroom);
-        console.log(
-          "***task",
-          task,
-          "***classroom",
-          classroom,
-          "***result",
-          result
+        const result = await createNewAssignation(
+          fetchTask,
+          end_date,
+          fetchClass
         );
         return result;
-      } catch (e) {
-        return e.message;
+      } catch (err) {
+        return err.message;
       }
     },
   },

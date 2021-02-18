@@ -14,20 +14,14 @@ export const TaskAssignationSchema = new Schema(
       ref: "Task",
     },
 
-    classroom: {
+    end_date: {
+      type: Date,
+    },
+
+    affectedTo: {
       type: Schema.Types.ObjectId,
       ref: "Classroom",
     },
-
-    // publication_date: {
-    //   type: Date,
-    // },
-
-    // end_date: {
-    //   type: Date,
-    // },
-
-    //affectedTo: [{ type: ObjectID, ref: ["User", "Group", "Classroom"] }],
   },
 
   { collection: "TaskAssignation" }
