@@ -83,7 +83,7 @@ describe("TaskAssignation", () => {
         }
       `,
       });
-      console.log(response.data.task);
+
       expect(response.data).toEqual({
         tasksAssignations: [
           {
