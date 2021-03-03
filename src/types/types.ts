@@ -2,17 +2,11 @@ import mongodb from "mongodb";
 
 export type UserType = {
   _id: mongodb.ObjectID;
-  username: string;
-  role: mongodb.ObjectID;
-  speciality: mongodb.ObjectID;
-};
-
-export type UserDetailsType = {
-  _id: mongodb.ObjectID;
   firstname: string;
   lastname: string;
   email: string;
-  user: mongodb.ObjectID;
+  role: mongodb.ObjectID;
+  speciality: mongodb.ObjectID;
 };
 
 export type TaskType = {
