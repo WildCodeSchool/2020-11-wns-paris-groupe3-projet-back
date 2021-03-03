@@ -13,12 +13,12 @@ describe("Get all users", () => {
   it("returns all users", async () => {
     const user1 = User.create({
       _id: "5ff492076a3476547d8cedcc",
-      username: "Pierre",
+      firstname: "Pierre",
     });
     (await user1).save();
     const user2 = User.create({
       _id: "5ff49ef46a3476547d8cedcd",
-      username: "Julie",
+      firstname: "Julie",
     });
     (await user2).save();
 
@@ -27,7 +27,7 @@ describe("Get all users", () => {
       {
         users {
           _id
-          username
+          firstname
         }
       }
     `,
@@ -37,11 +37,11 @@ describe("Get all users", () => {
       users: [
         {
           _id: "5ff492076a3476547d8cedcc",
-          username: "Pierre",
+          firstname: "Pierre",
         },
         {
           _id: "5ff49ef46a3476547d8cedcd",
-          username: "Julie",
+          firstname: "Julie",
         },
       ],
     });
