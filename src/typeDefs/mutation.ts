@@ -5,5 +5,7 @@ export const mutation = gql`
     createUser(input: InputUser): User
     createClassroom(input: InputClassroom): Classroom
     createTask(input: InputTask): Task
+    createRender(input: InputRender): Render
+    createCorrection(input: InputCorrection): Correction
   }
 `;
