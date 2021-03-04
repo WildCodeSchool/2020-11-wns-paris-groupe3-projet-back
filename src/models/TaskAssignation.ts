@@ -10,22 +10,21 @@ export const TaskAssignationSchema = new Schema(
     },
 
     task: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Task",
-    },
-
-    publication_date: {
-      type: Date,
     },
 
     end_date: {
       type: Date,
     },
 
-    affectedTo: [{ type: ObjectID, ref: ["User", "Group", "Classroom"] }],
+    affectedTo: {
+      type: Schema.Types.ObjectId,
+      ref: "Classroom",
+    },
   },
 
-  { collection: "Task_assignation" }
+  { collection: "TaskAssignation" }
 );
 
 export const TaskAssignation = mongoose.model(

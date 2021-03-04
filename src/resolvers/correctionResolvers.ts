@@ -3,39 +3,40 @@ import { Document } from "mongoose";
 
 import { cloudinaryConfig, uploadToCloudinary } from "../utils/cloudinary";
 
-import { TaskType, InputTaskType } from "../types/type";
-import { Task } from "../models";
+import { CorrectionType, InputCorrectionType } from "../types/type";
+import { Correction } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-export const createNewTask = (
-  taskname: string,
+export const createNewCorrection = (
+  task: mongodb.ObjectID,
+  user: mongodb.ObjectID,
   result: string
 ): Promise<Document> => {
-  const newTask: TaskType = {
+  const newCorrection: CorrectionType = {
     _id: new ObjectID(),
-    taskname: taskname,
     url: result,
+    task: task,
+    user: user,
     creation_date: Date.now(),
-    // user: args.input.user,
   };
-  return Task.create(newTask);
+  return Correction.create(newCorrection);
 };
 
-export const taskResolvers = {
-  Query: {
-    tasks: async (): Promise<Document[]> => await Task.find({}).exec(),
-  },
-
+export const correctionResolvers = {
   Mutation: {
-    createTask: async (
+    createCorrection: async (
       parent: undefined,
-      { input: { url, taskname } }: InputTaskType
+      { input: { task, user, url } }: InputCorrectionType
     ): Promise<Document> => {
       cloudinaryConfig();
       try {
         const result = await uploadToCloudinary(url);
-        const response = await createNewTask(taskname, result.secure_url);
+        const response = await createNewCorrection(
+          task,
+          user,
+          result.secure_url
+        );
         return response;
       } catch (e) {
         return e.message;
