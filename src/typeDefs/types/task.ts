@@ -12,6 +12,6 @@ export const task = gql`
   input InputTask {
     taskname: String!
     url: String!
-    # user: User
+    # user: ID
   }
 `;

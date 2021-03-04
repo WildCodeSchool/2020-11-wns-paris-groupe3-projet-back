@@ -19,6 +19,10 @@ export const RenderSchema = new Schema(
       ref: "Task",
     },
 
+    url: {
+      type: String,
+    },
+
     creation_date: {
       type: Date,
     },

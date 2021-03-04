@@ -2,7 +2,7 @@ import mongodb from "mongodb";
 import { Document } from "mongoose";
 import { UserInputError } from "apollo-server-express";
 
-import { TaskAssignationType, InputTaskAssignation } from "../types/types";
+import { TaskAssignationType, InputTaskAssignation } from "../types/type";
 import { Task, Classroom, TaskAssignation } from "../models";
 
 const ObjectID = mongodb.ObjectID;

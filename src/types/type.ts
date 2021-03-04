@@ -52,7 +52,8 @@ export type RenderType = {
   _id: mongodb.ObjectID;
   user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  creation_date: Date;
+  url: string;
+  creation_date: number;
 };
 
 export type GroupType = {
@@ -70,8 +71,10 @@ export type GradeType = {
 
 export type CorrectionType = {
   _id: mongodb.ObjectID;
+  user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  creation_date: Date;
+  url: string;
+  creation_date: number;
 };
 
 export type CommentType = {
@@ -93,4 +96,28 @@ export type AuthenticationType = {
   password: string;
   salt: string;
   user: mongodb.ObjectID;
+};
+
+export type InputTaskType = {
+  input: {
+    taskname: string;
+    url: string;
+    // user: mongodb.ObjectID;
+  };
+};
+
+export type InputRenderType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
+};
+
+export type InputCorrectionType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
 };
