@@ -1,11 +1,16 @@
 import { gql } from "apollo-server-express";
 
 export const taskAssignation = gql`
-  type Task_assignation {
+  type TaskAssignation {
     _id: ID!
-    task: ID!
-    publication_date: DateTime!
-    end_date: DateTime!
-    affectedTo: [ID!]
+    task: Task
+    end_date: DateTime
+    affectedTo: Classroom
+  }
+
+  input InputTaskAssignation {
+    task: ID
+    end_date: DateTime
+    affectedTo: ID
   }
 `;
