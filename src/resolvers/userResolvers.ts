@@ -9,7 +9,7 @@ import {
   UserDetailsType,
   InputLoginType,
   InputRegisterType,
-} from "../types/types";
+} from "../types/type";
 import { User, UserDetails } from "../models";
 
 const ObjectID = mongodb.ObjectID;
