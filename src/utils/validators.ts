@@ -1,4 +1,4 @@
-import { InputRegisterLoginErrorsType } from "../types/types";
+import { InputRegisterLoginErrorsType } from "../types/type";
 
 const validateInputRegister = (
   firstname: string,
