@@ -2,18 +2,12 @@ import mongodb from "mongodb";
 
 export type UserType = {
   _id: mongodb.ObjectID;
-  username: string;
-  role: mongodb.ObjectID;
-  speciality: mongodb.ObjectID;
-  user: mongodb.ObjectID;
-};
-
-export type UserDetailsType = {
-  _id: mongodb.ObjectID;
   firstname: string;
   lastname: string;
   email: string;
   password: string;
+  role: mongodb.ObjectID | null;
+  speciality: mongodb.ObjectID | null;
   creation_date: number;
 };
 

@@ -1,7 +1,7 @@
 import { createTestClient } from "apollo-server-testing";
 
 import { getApolloServer } from "../../server";
-import { User, UserDetails } from "../../models";
+import { User } from "../../models";
 
 describe("Get all users", () => {
   let query: any;
@@ -72,7 +72,7 @@ describe("Authenticate", () => {
   });
 
   it("should be null if a field is empty when try to log in", async () => {
-    const user = UserDetails.create({
+    const user = User.create({
       _id: "5ff492076a3476547d8cedcc",
       email: "fred@email.com",
       password: "1234560",

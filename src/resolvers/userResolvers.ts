@@ -5,16 +5,12 @@ import { Document } from "mongoose";
 import { UserInputError } from "apollo-server-express";
 
 import { validateInputRegister, validateInputLogin } from "../utils/validators";
-import {
-  UserDetailsType,
-  InputLoginType,
-  InputRegisterType,
-} from "../types/type";
-import { User, UserDetails } from "../models";
+import { UserType, InputLoginType, InputRegisterType } from "../types/type";
+import { User } from "../models";
 
 const ObjectID = mongodb.ObjectID;
 
-const generateToken = (user: UserDetailsType) => {
+const generateToken = (user: UserType) => {
   return jwt.sign(
     {
       id: user._id,
@@ -35,15 +31,17 @@ export const createNewUser = (
   email: string,
   password: string
 ): Promise<Document> => {
-  const newUser: UserDetailsType = {
+  const newUser: UserType = {
     _id: new ObjectID(),
     firstname,
     lastname,
     email,
     password,
+    speciality: null,
+    role: null,
     creation_date: Date.now(),
   };
-  return UserDetails.create(newUser);
+  return User.create(newUser);
 };
 
 export const userResolvers = {
@@ -61,7 +59,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user: any = await UserDetails.findOne({ email });
+      const user: any = await User.findOne({ email });
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User not found", { errors });
@@ -98,7 +96,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user = await UserDetails.findOne({ email });
+      const user = await User.findOne({ email });
       if (user) {
         throw new UserInputError("Email is already taken", {
           errors: {

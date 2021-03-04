@@ -9,4 +9,3 @@ export { Speciality } from "./Speciality";
 export { Task } from "./Task";
 export { TaskAssignation } from "./TaskAssignation";
 export { User } from "./User";
-export { UserDetails } from "./UserDetails";

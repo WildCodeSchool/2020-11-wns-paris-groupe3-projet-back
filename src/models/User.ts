@@ -9,7 +9,22 @@ export const UserSchema = new Schema(
       type: ObjectID,
     },
 
-    username: {
+    firstname: {
+      type: String,
+      required: true,
+    },
+
+    lastname: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+    },
+
+    password: {
       type: String,
       required: true,
     },
@@ -23,12 +38,11 @@ export const UserSchema = new Schema(
     speciality: {
       type: mongoose.Schema.Types.ObjectId,
       required: false,
-      ref: "speciality",
+      ref: "Speciality",
     },
 
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    creation_date: {
+      type: Date,
     },
   },
 
