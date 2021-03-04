@@ -14,14 +14,21 @@ export const TaskSchema = new Schema(
       type: String,
     },
 
-    // File
+    url: {
+      required: true,
+      type: String,
+    },
+
+    // user: {
+    //   required: true,
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
 
     creation_date: {
       required: true,
       type: Date,
     },
-
-    users: [{ type: ObjectID, ref: "User" }],
   },
 
   { collection: "Task" }

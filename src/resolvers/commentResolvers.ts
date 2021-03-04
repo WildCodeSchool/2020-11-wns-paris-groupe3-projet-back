@@ -3,7 +3,7 @@ import mongodb from "mongodb";
 import { Document } from "mongoose";
 
 import { User, Comment, Task } from "../models";
-import { CommentType } from "../types/types";
+import { CommentType } from "../types/type";
 
 const ObjectID = mongodb.ObjectID;
 

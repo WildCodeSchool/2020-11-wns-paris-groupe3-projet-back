@@ -9,6 +9,10 @@ const main = async () => {
   const apolloServer = await getApolloServer();
 
   const expressServer = express();
+
+  expressServer.use(express.json({ limit: "50mb" }));
+  expressServer.use(express.urlencoded({ limit: "50mb", extended: true }));
+
   apolloServer.applyMiddleware({ app: expressServer });
 
   expressServer.listen(PORT, () =>

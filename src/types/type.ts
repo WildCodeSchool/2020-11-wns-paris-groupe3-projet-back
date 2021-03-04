@@ -18,19 +18,27 @@ export type UserDetailsType = {
 export type TaskType = {
   _id: mongodb.ObjectID;
   taskname: string;
+  url: string;
   creation_date: number;
-  users: Array<mongodb.ObjectID>;
+  // user: mongodb.ObjectID;
 };
 
-export type TaskAssignation = {
+export type TaskAssignationType = {
   _id: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  publication_date: Date;
   end_date: Date;
-  affectedTo: Array<mongodb.ObjectID>;
+  affectedTo: mongodb.ObjectID;
 };
 
-export type specialityType = {
+export type InputTaskAssignation = {
+  input: {
+    task: mongodb.ObjectID;
+    end_date: Date;
+    affectedTo: mongodb.ObjectID;
+  };
+};
+
+export type SpecialityType = {
   _id: mongodb.ObjectID;
   speciality_name: string;
 };
@@ -44,7 +52,8 @@ export type RenderType = {
   _id: mongodb.ObjectID;
   user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  creation_date: Date;
+  url: string;
+  creation_date: number;
 };
 
 export type GroupType = {
@@ -62,8 +71,10 @@ export type GradeType = {
 
 export type CorrectionType = {
   _id: mongodb.ObjectID;
+  user: mongodb.ObjectID;
   task: mongodb.ObjectID;
-  creation_date: Date;
+  url: string;
+  creation_date: number;
 };
 
 export type CommentType = {
@@ -85,4 +96,28 @@ export type AuthenticationType = {
   password: string;
   salt: string;
   user: mongodb.ObjectID;
+};
+
+export type InputTaskType = {
+  input: {
+    taskname: string;
+    url: string;
+    // user: mongodb.ObjectID;
+  };
+};
+
+export type InputRenderType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
+};
+
+export type InputCorrectionType = {
+  input: {
+    task: mongodb.ObjectID;
+    user: mongodb.ObjectID;
+    url: string;
+  };
 };
