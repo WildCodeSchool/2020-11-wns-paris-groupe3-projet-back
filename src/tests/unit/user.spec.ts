@@ -13,14 +13,20 @@ describe("Get all users", () => {
   it("returns all users", async () => {
     const user1 = User.create({
       _id: "5ff307772a325013a4389fa2",
-      username: "Pierre Dupond",
+      firstname: "Pierre",
+      lastname: "Dupond",
+      email: "p@email.com",
+      password: "123456",
       role: "5fdb76f200e2c95340a59cc9",
       speciality: "5fdb812a00e2c95340a59ccb",
     });
     (await user1).save();
     const user2 = User.create({
       _id: "5ff4816d653ab339a84574a6",
-      username: "Julie Durand",
+      firstname: "Julie",
+      lastname: "Durand",
+      email: "j@email.com",
+      password: "123456",
       role: "5fdb76f200e2c95340a59cc9",
       speciality: "5fdb812a00e2c95340a59ccb",
     });
@@ -31,11 +37,14 @@ describe("Get all users", () => {
       {
         users {
           _id
-          username
+          firstname
+          lastname
           role {
             _id
           }
-          speciality
+          speciality {
+            _id
+          }
         }
       }
     `,
@@ -45,19 +54,25 @@ describe("Get all users", () => {
       users: [
         {
           _id: "5ff307772a325013a4389fa2",
-          username: "Pierre Dupond",
+          firstname: "Pierre",
+          lastname: "Dupond",
           role: {
             _id: "5fdb76f200e2c95340a59cc9",
           },
-          speciality: "5fdb812a00e2c95340a59ccb",
+          speciality: {
+            _id: "5fdb812a00e2c95340a59ccb",
+          },
         },
         {
           _id: "5ff4816d653ab339a84574a6",
-          username: "Julie Durand",
+          firstname: "Julie",
+          lastname: "Durand",
           role: {
             _id: "5fdb76f200e2c95340a59cc9",
           },
-          speciality: "5fdb812a00e2c95340a59ccb",
+          speciality: {
+            _id: "5fdb812a00e2c95340a59ccb",
+          },
         },
       ],
     });
