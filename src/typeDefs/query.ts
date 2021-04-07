@@ -8,7 +8,7 @@ export const query = gql`
     taskById(id: ID!): Task
     allTasksByUser(id: ID!): [Task]
     roles: [Role]
-    specialties: [speciality]
+    speciality: [Speciality]
     classrooms: [Classroom]
     tasksAssignations: [TaskAssignation]
   }

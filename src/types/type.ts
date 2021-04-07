@@ -2,17 +2,35 @@ import mongodb from "mongodb";
 
 export type UserType = {
   _id: mongodb.ObjectID;
-  username: string;
-  role: mongodb.ObjectID;
-  speciality: mongodb.ObjectID;
-};
-
-export type UserDetailsType = {
-  _id: mongodb.ObjectID;
   firstname: string;
   lastname: string;
   email: string;
-  user: mongodb.ObjectID;
+  password: string;
+  role: mongodb.ObjectID | null;
+  speciality: mongodb.ObjectID | null;
+  creation_date: number;
+};
+
+export type InputRegisterType = {
+  input: {
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
+  errors: { [key: string]: string };
+  valid: boolean;
+};
+
+export type InputLoginType = {
+  email: string;
+  password: string;
+};
+
+export type InputRegisterLoginErrorsType = {
+  errors: { [key: string]: string };
+  valid: boolean;
 };
 
 export type TaskType = {
