@@ -3,7 +3,7 @@ import mongodb from "mongodb";
 
 const ObjectID = mongodb.ObjectID;
 
-export const specialitySchema = new Schema(
+export const SpecialitySchema = new Schema(
   {
     _id: {
       type: ObjectID,
@@ -15,7 +15,7 @@ export const specialitySchema = new Schema(
     },
   },
 
-  { collection: "speciality" }
+  { collection: "Speciality" }
 );
 
-export const Speciality = mongoose.model("speciality", specialitySchema);
+export const Speciality = mongoose.model("Speciality", SpecialitySchema);

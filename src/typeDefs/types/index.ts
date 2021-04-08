@@ -1,4 +1,3 @@
-export { authentication } from "./authentication";
 export { classroom } from "./classroom";
 export { comment } from "./comment";
 export { correction } from "./correction";
@@ -10,4 +9,3 @@ export { speciality } from "./speciality";
 export { task } from "./task";
 export { taskAssignation } from "./taskAssignation";
 export { user } from "./user";
-export { userDetails } from "./userDetails";
