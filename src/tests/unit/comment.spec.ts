@@ -12,7 +12,7 @@ describe("Comment", () => {
     query = testClient.query;
   });
 
-  describe("Mutation for create a comment for a task", () => {
+  describe("Mutation to create a comment for a task", () => {
     it("Create a comment and return it", async () => {
       const response = await mutate({
         mutation: `
@@ -39,7 +39,7 @@ describe("Comment", () => {
     });
   });
 
-  describe("Mutation for update a comment with his ID", () => {
+  describe("Mutation to update a comment with his ID", () => {
     it("update a comment and return it", async () => {
       const commentOne = Comment.create({
         _id: "5ff492076a3476547d8cedcc",
@@ -74,7 +74,7 @@ describe("Comment", () => {
     });
   });
 
-  describe("Mutation for delete a comment", () => {
+  describe("Mutation to delete a comment", () => {
     it("delete a comment", async () => {
       const commentOne = Comment.create({
         _id: "5ff492076a3476547d8cedcc",
@@ -106,24 +106,33 @@ describe("Comment", () => {
     });
   });
 
-  describe("Query for get all comments", () => {
+  describe("Query to get all comments", () => {
     it("allComments", async () => {
       // Create users for testing query
       const userTestOne = User.create({
         _id: "6ff492076a3476547d8cedde",
-        username: "Franck",
+        firstname: "Franck",
+        lastname: "Ribery",
+        email: "fribery@gmail.fr",
+        password: "123456",
       });
       (await userTestOne).save();
 
       const userTestTwo = User.create({
         _id: "6ff492076a3476547d8ceddf",
-        username: "Jérémy",
+        firstname: "Sebastien",
+        lastname: "Chabal",
+        email: "schabal@gmail.fr",
+        password: "charaaal",
       });
       (await userTestTwo).save();
 
       const userTestThree = User.create({
         _id: "606d9ea9f5114b189307dc3f",
-        username: "Mick",
+        firstname: "Mike",
+        lastname: "Tyson",
+        email: "mtyson@gmail.fr",
+        password: "123456",
       });
       (await userTestThree).save();
 
@@ -131,18 +140,24 @@ describe("Comment", () => {
       const taskTestOne = Task.create({
         _id: "5ff739afc976ff15d97eb12f",
         taskname: "Node Pour Débutant",
+        creation_date: "2021-04-07T12:19:04.833Z",
+        url: "www.wildcodeschool.fr",
       });
       (await taskTestOne).save();
 
       const TaskTestTwo = Task.create({
-        _id: "5ff739afc976ff15d97eb12u",
+        _id: "601eedd63d1d566855169d9e",
         taskname: "TS pour nul",
+        creation_date: "2021-04-07T12:19:04.833Z",
+        url: "www.wildcodeschool.fr",
       });
       (await TaskTestTwo).save();
 
       const TaskTestThree = Task.create({
         _id: "5ff739afc976ff15d97eb55f",
         taskname: "Tache de chocolat",
+        creation_date: "2021-04-07T12:19:04.833Z",
+        url: "www.wildcodeschool.fr",
       });
       (await TaskTestThree).save();
 
@@ -151,42 +166,48 @@ describe("Comment", () => {
         _id: "5ff492076a3476547d8cedcc",
         user: {
           _id: "6ff492076a3476547d8cedde",
-          username: "Franck",
+          firstname: "Franck",
         },
         creation_date: "2021-04-07T12:19:04.833Z",
         task: {
           _id: "5ff739afc976ff15d97eb12f",
           taskname: "Node Pour Débutant",
+          creation_date: "2021-04-07T12:19:04.833Z",
+          url: "www.wildcodeschool.fr",
         },
         content: "Test Commentaire 1",
       });
       (await commentOne).save();
 
       const commentTwo = Comment.create({
-        _id: "5ff492076a3476547d8cehuy",
+        _id: "606ebf0aec9fa927191e839f",
         user: {
           _id: "6ff492076a3476547d8ceddf",
-          username: "Jérémy",
+          firstname: "Sebastien",
         },
         creation_date: "2021-04-07T12:19:04.832Z",
         task: {
-          _id: "5ff739afc976ff15d97eb12u",
+          _id: "601eedd63d1d566855169d9e",
           taskname: "TS pour nul",
+          creation_date: "2021-04-07T12:19:04.833Z",
+          url: "www.wildcodeschool.fr",
         },
         content: "Test Commentaire 2",
       });
       (await commentTwo).save();
 
       const commentThree = Comment.create({
-        _id: "5ff492076a3476547d8cedcu",
+        _id: "606db62c2cc14f3911caf667",
         user: {
           _id: "606d9ea9f5114b189307dc3f",
-          username: "Mick",
+          firstname: "Mike",
         },
         creation_date: "2021-04-07T12:19:04.831Z",
         task: {
           _id: "5ff739afc976ff15d97eb55f",
           taskname: "Tache de chocolat",
+          creation_date: "2021-04-07T12:19:04.833Z",
+          url: "www.wildcodeschool.fr",
         },
         content: "Test Commentaire 3",
       });
@@ -196,9 +217,9 @@ describe("Comment", () => {
         query: `
         {
           allComments
-           {_id , content , creation_date ,
-             task{_id , taskname} ,
-               user{_id , username}
+            {_id , content , 
+              task{_id , taskname} ,
+                user{_id , firstname}
               }
             }
       `,
@@ -210,9 +231,8 @@ describe("Comment", () => {
             _id: "5ff492076a3476547d8cedcc",
             user: {
               _id: "6ff492076a3476547d8cedde",
-              username: "Franck",
+              firstname: "Franck",
             },
-            creation_date: "2021-04-07T12:19:04.833Z",
             task: {
               _id: "5ff739afc976ff15d97eb12f",
               taskname: "Node Pour Débutant",
@@ -220,25 +240,23 @@ describe("Comment", () => {
             content: "Test Commentaire 1",
           },
           {
-            _id: "5ff492076a3476547d8cedcf",
+            _id: "606ebf0aec9fa927191e839f",
             user: {
               _id: "6ff492076a3476547d8ceddf",
-              username: "Jérémy",
+              firstname: "Sebastien",
             },
-            creation_date: "2021-04-07T12:19:04.832Z",
             task: {
-              _id: "5ff739afc976ff15d97eb12u",
+              _id: "601eedd63d1d566855169d9e",
               taskname: "TS pour nul",
             },
             content: "Test Commentaire 2",
           },
           {
-            _id: "5ff492076a3476547d8cedcu",
+            _id: "606db62c2cc14f3911caf667",
             user: {
               _id: "606d9ea9f5114b189307dc3f",
-              username: "Mick",
+              firstname: "Mike",
             },
-            creation_date: "2021-04-07T12:19:04.831Z",
             task: {
               _id: "5ff739afc976ff15d97eb55f",
               taskname: "Tache de chocolat",
