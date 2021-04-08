@@ -11,5 +11,7 @@ export const query = gql`
     specialties: [speciality]
     classrooms: [Classroom]
     tasksAssignations: [TaskAssignation]
+    allComments: [Comment]
+    allCommentsForOneTask(_id: ID!): [Comment]
   }
 `;
