@@ -8,6 +8,7 @@ export type UserType = {
   password: string;
   role: mongodb.ObjectID | null;
   speciality: mongodb.ObjectID | null;
+  status: boolean;
   creation_date: number;
 };
 

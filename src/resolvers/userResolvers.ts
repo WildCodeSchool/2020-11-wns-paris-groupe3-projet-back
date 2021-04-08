@@ -39,6 +39,7 @@ export const createNewUser = (
     password,
     speciality: null,
     role: null,
+    status: false,
     creation_date: Date.now(),
   };
   return User.create(newUser);
@@ -46,7 +47,8 @@ export const createNewUser = (
 
 export const userResolvers = {
   Query: {
-    users: async (): Promise<Document[]> => await User.find({}).exec(),
+    users: async (): Promise<Document[]> =>
+      await User.find({}).populate("role").exec(),
   },
 
   Mutation: {

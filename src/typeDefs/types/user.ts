@@ -9,6 +9,7 @@ export const user = gql`
     password: String!
     token: String!
     role: Role
+    status: Boolean
     speciality: Speciality
     creation_date: DateTime!
   }
@@ -21,6 +22,7 @@ export const user = gql`
     confirmPassword: String!
     role: ID
     speciality: ID
+    status: Boolean
   }
 
   input InputLogin {

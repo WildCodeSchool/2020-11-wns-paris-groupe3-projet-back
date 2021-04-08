@@ -41,6 +41,11 @@ export const UserSchema = new Schema(
       ref: "Speciality",
     },
 
+    status: {
+      type: Boolean,
+      required: false,
+    },
+
     creation_date: {
       type: Date,
     },
