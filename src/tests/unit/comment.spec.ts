@@ -108,7 +108,7 @@ describe("Comment", () => {
 
   describe("Query to get all comments", () => {
     it("allComments", async () => {
-      // Create users for testing query
+      // Create users to testing query
       const userTestOne = User.create({
         _id: "6ff492076a3476547d8cedde",
         firstname: "Franck",
@@ -136,7 +136,7 @@ describe("Comment", () => {
       });
       (await userTestThree).save();
 
-      // Create some task for testing query
+      // Create some task to testing query
       const taskTestOne = Task.create({
         _id: "5ff739afc976ff15d97eb12f",
         taskname: "Node Pour Débutant",
@@ -161,7 +161,7 @@ describe("Comment", () => {
       });
       (await TaskTestThree).save();
 
-      // Create some comments for testing the result
+      // Create some comments to testing the result
       const commentOne = Comment.create({
         _id: "5ff492076a3476547d8cedcc",
         user: {
@@ -260,6 +260,126 @@ describe("Comment", () => {
             task: {
               _id: "5ff739afc976ff15d97eb55f",
               taskname: "Tache de chocolat",
+            },
+            content: "Test Commentaire 3",
+          },
+        ],
+      });
+    });
+  });
+
+  describe("Query to get all comments for one task", () => {
+    it("Comments for a task", async () => {
+      // Create some tasks for query testing
+      const taskTest = Task.create({
+        _id: "5ff739afc976ff15d97eb12f",
+        taskname: "Node Pour Débutant",
+        creation_date: "2021-04-07T12:19:04.833Z",
+        url: "www.wildcodeschool.fr",
+      });
+      (await taskTest).save();
+
+      const userTest = User.create({
+        _id: "6ff492076a3476547d8ceddf",
+        firstname: "Sebastien",
+        lastname: "Chabal",
+        email: "schabal@gmail.fr",
+        password: "charaaal",
+      });
+      (await userTest).save();
+
+      // Create some comments to testing the result
+      const commentOne = Comment.create({
+        _id: "5ff492076a3476547d8cedcc",
+        user: {
+          _id: "6ff492076a3476547d8ceddf",
+          firstname: "Sebastien",
+        },
+        task: {
+          _id: "5ff739afc976ff15d97eb12f",
+          taskname: "Node Pour Débutant",
+        },
+        content: "Test Commentaire 1",
+      });
+      (await commentOne).save();
+
+      const commentTwo = Comment.create({
+        _id: "606ebf0aec9fa927191e839f",
+        user: {
+          _id: "6ff492076a3476547d8ceddf",
+          firstname: "Sebastien",
+        },
+        task: {
+          _id: "5ff739afc976ff15d97eb12f",
+          taskname: "Node Pour Débutant",
+        },
+        content: "Test Commentaire 2",
+      });
+      (await commentTwo).save();
+
+      const commentThree = Comment.create({
+        _id: "606db62c2cc14f3911caf667",
+        user: {
+          _id: "6ff492076a3476547d8ceddf",
+          firstname: "Sebastien",
+        },
+        task: {
+          _id: "5ff739afc976ff15d97eb12f",
+          taskname: "Node Pour Débutant",
+        },
+        content: "Test Commentaire 3",
+      });
+      (await commentThree).save();
+
+      const response = await query({
+        query: `
+        {
+          allCommentsForOneTask(_id : "5ff739afc976ff15d97eb12f")
+        {
+          _id, content,
+            user{_id, firstname},
+              task{_id,taskname}
+        }
+      }
+      `,
+      });
+
+      expect(await Comment.countDocuments()).toEqual(3);
+      expect(response.data).toEqual({
+        allCommentsForOneTask: [
+          {
+            _id: "5ff492076a3476547d8cedcc",
+            user: {
+              _id: "6ff492076a3476547d8ceddf",
+              firstname: "Sebastien",
+            },
+            task: {
+              _id: "5ff739afc976ff15d97eb12f",
+              taskname: "Node Pour Débutant",
+            },
+            content: "Test Commentaire 1",
+          },
+          {
+            _id: "606ebf0aec9fa927191e839f",
+            user: {
+              _id: "6ff492076a3476547d8ceddf",
+              firstname: "Sebastien",
+            },
+            task: {
+              _id: "5ff739afc976ff15d97eb12f",
+              taskname: "Node Pour Débutant",
+            },
+            content: "Test Commentaire 2",
+          },
+          {
+            _id: "606db62c2cc14f3911caf667",
+            user: {
+              _id: "6ff492076a3476547d8ceddf",
+              firstname: "Sebastien",
+            },
+            task: {
+              _id: "5ff739afc976ff15d97eb12f",
+              taskname: "Node Pour Débutant",
             },
             content: "Test Commentaire 3",
           },
