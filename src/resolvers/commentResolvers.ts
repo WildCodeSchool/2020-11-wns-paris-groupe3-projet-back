@@ -1,7 +1,6 @@
 import { ApolloError } from "apollo-server-express";
 import mongodb from "mongodb";
 import { Document } from "mongoose";
-import { Doc } from "prettier";
 
 import { User, Comment, Task } from "../models";
 import {
@@ -95,8 +94,8 @@ export const commentResolvers = {
       );
 
       try {
-        const filter: Object = { _id: commentIsFind };
-        const update: Object = { content: content };
+        const filter = { _id: commentIsFind };
+        const update = { content: content };
 
         await Comment.updateOne(filter, update);
         commentIsFind = await Comment.findById(_id);
