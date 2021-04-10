@@ -21,6 +21,16 @@ export const classroomResolvers = {
         | null = await Classroom.findOne({ _id }).populate("users").exec();
       return classroom;
     },
+
+    classroomByUserId: async (
+      parent: undefined,
+      { _id }: any
+    ): Promise<Document> => {
+      const classroom = await Classroom.find({ users: _id })
+        .populate("users")
+        .exec();
+      return classroom[0];
+    },
   },
 
   Mutation: {
