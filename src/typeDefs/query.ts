@@ -10,6 +10,7 @@ export const query = gql`
     roles: [Role]
     speciality: [Speciality]
     classrooms: [Classroom]
+    classroomById(_id: ID!): Classroom
     tasksAssignations: [TaskAssignation]
   }
 `;
