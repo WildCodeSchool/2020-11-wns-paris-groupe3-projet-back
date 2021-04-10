@@ -1,7 +1,7 @@
 import mongodb from "mongodb";
 import { Document } from "mongoose";
 
-import { ClassroomType, InputClassroomType } from "../types/type";
+import { ClassroomType, InputClassroomType, UserType } from "../types/type";
 import { Classroom } from "../models";
 
 const ObjectID = mongodb.ObjectID;
@@ -24,7 +24,7 @@ export const classroomResolvers = {
 
     classroomByUserId: async (
       parent: undefined,
-      { _id }: any
+      { _id }: UserType
     ): Promise<Document> => {
       const classroom = await Classroom.find({ users: _id })
         .populate("users")
