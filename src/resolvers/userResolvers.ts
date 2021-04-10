@@ -17,6 +17,7 @@ const generateToken = (user: UserType) => {
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
+      role: user.role,
     },
     process.env.JWT_SECRET,
     {
@@ -59,7 +60,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user: any = await User.findOne({ email });
+      const user: any = await User.findOne({ email }).populate("role").exec();
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User not found", { errors });
@@ -72,7 +73,6 @@ export const userResolvers = {
       }
 
       const token = generateToken(user);
-
       return {
         ...user._doc,
         token,
