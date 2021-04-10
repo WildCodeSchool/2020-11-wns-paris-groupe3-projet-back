@@ -27,7 +27,12 @@ export const classroomResolvers = {
       { _id }: UserType
     ): Promise<Document> => {
       const classroom = await Classroom.find({ users: _id })
-        .populate("users")
+        .populate({
+          path: "users",
+          populate: {
+            path: "role",
+          },
+        })
         .exec();
       return classroom[0];
     },
