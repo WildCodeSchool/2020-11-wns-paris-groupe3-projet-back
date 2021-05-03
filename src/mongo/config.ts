@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const url = process.env.ATLAS_URI;
+const url = process.env.ATLAS_URI || "";
 
 mongoose
   .connect(url, {
