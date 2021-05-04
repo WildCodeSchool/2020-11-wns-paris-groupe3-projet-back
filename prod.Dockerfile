@@ -16,8 +16,9 @@ FROM node:14-alpine
 RUN mkdir /app
 WORKDIR /app
 COPY package.json package.json
+COPY .env .env
 RUN npm install --only=production
 COPY --from=builder /app/built ./built
 EXPOSE 8080
 
-CMD npm run build
+CMD npm run prod
