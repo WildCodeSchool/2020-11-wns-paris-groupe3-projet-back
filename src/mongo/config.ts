@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-mongoose.Promise = global.Promise;
+(<any>mongoose).Promise = global.Promise;
 
 dotenv.config();
 
-const url = process.env.ATLAS_URI;
+const url = process.env.ATLAS_URI || "";
 
 mongoose
   .connect(url, {
