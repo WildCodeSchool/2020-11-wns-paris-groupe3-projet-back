@@ -13,7 +13,7 @@
     "lint": "eslint . ",
     "lint-fix": "eslint --fix . ",
     "dev": "ts-node-dev --transpile-only --respawn ./src/index.ts",
-    "prod": "node ./built/server.js",
+    "prod": "node ./built/index.js",
     "debug": "tsc && node --inspect ./built/server.js"
   },
   "husky": {
