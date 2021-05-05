@@ -14,7 +14,17 @@
     "lint-fix": "eslint --fix . ",
     "dev": "ts-node-dev --transpile-only --respawn ./src/index.ts",
     "prod": "node ./built/index.js",
-    "debug": "tsc && node --inspect ./built/server.js"
+    "debug": "tsc && node --inspect ./built/server.js",
+    "====DOCKER====": "",
+    "--dev--": "",
+    "dev up": "docker-compose -f ./docker-compose-dev.yml up",
+    "dev down": "docker-compose -f ./docker-compose-dev.yml down",
+    "--prod--": "",
+    "prod up": "docker-compose -f ./docker-compose-prod.yml up",
+    "prod down": "docker-compose -f ./docker-compose-prod.yml down",
+    "--staging--": "",
+    "staging up": "docker-compose -f ./docker-compose-prod.yml up",
+    "staging down": "docker-compose -f ./docker-compose-prod.yml down"
   },
   "husky": {
     "hooks": {
