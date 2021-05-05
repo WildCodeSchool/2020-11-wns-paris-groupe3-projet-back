@@ -1,0 +1,11 @@
+version: "2"
+services:
+  app:
+    container_name: easy-homeworks-back-dev
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile.dev
+    ports:
+      - 8080:8080
+    volumes:
+      - ./src:/app/src

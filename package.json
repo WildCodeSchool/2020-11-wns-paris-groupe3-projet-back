@@ -14,7 +14,20 @@
     "lint-fix": "eslint --fix . ",
     "dev": "ts-node-dev --transpile-only --respawn ./src/index.ts",
     "prod": "node ./built/index.js",
-    "debug": "tsc && node --inspect ./built/server.js"
+    "debug": "tsc && node --inspect ./built/server.js",
+    "====DOCKER====": "",
+    "--dev--": "",
+    "dev build up": "docker-compose -f ./infra/docker-compose-dev.yml up --build  --no-cache",
+    "dev up": "docker-compose -f ./infra/docker-compose-dev.yml up",
+    "dev down": "docker-compose -f ./infra/docker-compose-dev.yml down",
+    "--prod--": "",
+    "prod build up": "docker-compose -f ./infra/docker-compose-prod.yml up --build --no-cache",
+    "prod up": "docker-compose -f ./infra/docker-compose-prod.yml up",
+    "prod down": "docker-compose -f ./infra/docker-compose-prod.yml down",
+    "--staging--": "",
+    "staging build up": "docker-compose -f ./infra/docker-compose-prod.yml up --build --no-cache",
+    "staging up": "docker-compose -f ./infra/docker-compose-prod.yml up",
+    "staging down": "docker-compose -f ./infra/docker-compose-prod.yml down"
   },
   "husky": {
     "hooks": {
