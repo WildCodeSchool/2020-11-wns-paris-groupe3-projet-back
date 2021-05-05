@@ -4,7 +4,7 @@ services:
     container_name: easy-homeworks-back-prod
     build:
       context: ./
-      dockerfile: ./Dockerfile.dev
+      dockerfile: ./Dockerfile.prod
     ports:
       - 8080:8080
     volumes:
