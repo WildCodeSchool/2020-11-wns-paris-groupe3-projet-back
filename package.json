@@ -17,14 +17,17 @@
     "debug": "tsc && node --inspect ./built/server.js",
     "====DOCKER====": "",
     "--dev--": "",
-    "dev up": "docker-compose -f ./docker-compose-dev.yml up",
-    "dev down": "docker-compose -f ./docker-compose-dev.yml down",
+    "dev up build": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml build --no-cache",
+    "dev up": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml up",
+    "dev down": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml down",
     "--prod--": "",
-    "prod up": "docker-compose -f ./docker-compose-prod.yml up",
-    "prod down": "docker-compose -f ./docker-compose-prod.yml down",
+    "prod up build": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml build --no-cache",
+    "prod up": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml up",
+    "prod down": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml down",
     "--staging--": "",
-    "staging up": "docker-compose -f ./docker-compose-prod.yml up",
-    "staging down": "docker-compose -f ./docker-compose-prod.yml down"
+    "staging up build": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-staging.yml build --no-cache",
+    "staging up": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-staging.yml up",
+    "staging down": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-stagings.yml down"
   },
   "husky": {
     "hooks": {
