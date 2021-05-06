@@ -6,6 +6,6 @@ services:
       context: ./
       dockerfile: ./Dockerfile.prod
     ports:
-      - ${GATEWAY_PORT}:80
+      - ${GATEWAY_PORT}:8080
     volumes:
       - ./src:/app/src
