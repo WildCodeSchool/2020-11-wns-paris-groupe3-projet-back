@@ -19,6 +19,5 @@ COPY package.json package.json
 COPY .env .env
 RUN npm install --only=production
 COPY --from=builder /app/built ./built
-EXPOSE 8080
 
 CMD npm run prod
