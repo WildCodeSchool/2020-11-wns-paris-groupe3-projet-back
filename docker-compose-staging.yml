@@ -1,0 +1,11 @@
+version: "2"
+services:
+  app:
+    container_name: easy-homeworks-back-staging
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - ${GATEWAY_PORT}:8080
+    volumes:
+      - ./src:/app/src

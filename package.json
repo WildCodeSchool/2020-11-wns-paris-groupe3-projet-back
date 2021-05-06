@@ -13,8 +13,21 @@
     "lint": "eslint . ",
     "lint-fix": "eslint --fix . ",
     "dev": "ts-node-dev --transpile-only --respawn ./src/index.ts",
-    "prod": "node ./built/server.js",
-    "debug": "tsc && node --inspect ./built/server.js"
+    "prod": "node ./built/index.js",
+    "debug": "tsc && node --inspect ./built/server.js",
+    "====DOCKER====": "",
+    "--dev--": "",
+    "dev up build": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml build --no-cache",
+    "dev up": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml up",
+    "dev down": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-dev.yml down",
+    "--prod--": "",
+    "prod up build": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml build --no-cache",
+    "prod up": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml up",
+    "prod down": "GATEWAY_PORT=8080 docker-compose -f ./docker-compose-prod.yml down",
+    "--staging--": "",
+    "staging up build": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-staging.yml build --no-cache",
+    "staging up": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-staging.yml up",
+    "staging down": "GATEWAY_PORT=8081 docker-compose -f ./docker-compose-stagings.yml down"
   },
   "husky": {
     "hooks": {
