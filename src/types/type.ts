@@ -101,7 +101,26 @@ export type CommentType = {
   user: mongodb.ObjectID;
   task: mongodb.ObjectID;
   content: string;
-  creation_date: Date;
+  creation_date: number;
+};
+
+export type InputCommentType = {
+  input: {
+    user: mongodb.ObjectID;
+    task: mongodb.ObjectID;
+    content: string;
+  };
+};
+
+export type InputUpdateCommentType = {
+  _id: mongodb.ObjectID;
+  input: {
+    content: string;
+  };
+};
+
+export type DeleteCommentType = {
+  _id: mongodb.ObjectID;
 };
 
 export type ClassroomType = {

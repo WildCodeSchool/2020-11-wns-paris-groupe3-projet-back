@@ -19,7 +19,7 @@ const generateToken = (user: UserType) => {
       lastname: user.lastname,
       role: user.role,
     },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET || "",
     {
       expiresIn: "1h",
     }

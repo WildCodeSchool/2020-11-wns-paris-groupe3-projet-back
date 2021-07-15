@@ -10,12 +10,12 @@ export const CommentSchema = new Schema(
     },
 
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: ObjectID,
       ref: "User",
     },
 
     task: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: ObjectID,
       ref: "Task",
     },
 

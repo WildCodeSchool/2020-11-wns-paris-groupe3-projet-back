@@ -1,5 +1,5 @@
 import { merge } from "lodash";
-
+import { commentResolvers } from "./commentResolvers";
 import { userResolvers } from "./userResolvers";
 import { taskResolvers } from "./taskResolvers";
 import { taskAssignationResolvers } from "./taskAssignationResolvers";
@@ -13,7 +13,8 @@ const resolvers = merge(
   taskAssignationResolvers,
   classroomResolvers,
   renderResolvers,
-  correctionResolvers
+  correctionResolvers,
+  commentResolvers
 );
 
 export default resolvers;
