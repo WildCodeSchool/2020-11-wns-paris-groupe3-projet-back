@@ -128,6 +128,13 @@ export type ClassroomType = {
   users: Array<mongodb.ObjectID>;
 };
 
+export type InputClassroomType = {
+  input: {
+    classname: string;
+    users: Array<mongodb.ObjectID>;
+  };
+};
+
 export type AuthenticationType = {
   _id: mongodb.ObjectID;
   password: string;

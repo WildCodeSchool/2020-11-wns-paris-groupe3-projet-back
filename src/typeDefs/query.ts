@@ -10,6 +10,8 @@ export const query = gql`
     roles: [Role]
     speciality: [Speciality]
     classrooms: [Classroom]
+    classroomById(_id: ID!): Classroom
+    classroomByUserId(_id: ID!): Classroom
     tasksAssignations: [TaskAssignation]
     allComments: [Comment]
     allCommentsForOneTask(_id: ID!): [Comment]
