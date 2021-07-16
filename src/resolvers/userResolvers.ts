@@ -17,6 +17,7 @@ const generateToken = (user: UserType) => {
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
+      role: user.role,
     },
     process.env.JWT_SECRET || "",
     {
@@ -39,6 +40,7 @@ export const createNewUser = (
     password,
     speciality: null,
     role: null,
+    status: false,
     creation_date: Date.now(),
   };
   return User.create(newUser);
@@ -46,7 +48,8 @@ export const createNewUser = (
 
 export const userResolvers = {
   Query: {
-    users: async (): Promise<Document[]> => await User.find({}).exec(),
+    users: async (): Promise<Document[]> =>
+      await User.find({}).populate("role").exec(),
   },
 
   Mutation: {
@@ -59,7 +62,7 @@ export const userResolvers = {
         throw new UserInputError("Errors", { errors });
       }
 
-      const user: any = await User.findOne({ email });
+      const user: any = await User.findOne({ email }).populate("role").exec();
       if (!user) {
         errors.general = "User not found";
         throw new UserInputError("User not found", { errors });

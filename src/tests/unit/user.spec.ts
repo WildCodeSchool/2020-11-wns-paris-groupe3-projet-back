@@ -39,9 +39,6 @@ describe("Get all users", () => {
           _id
           firstname
           lastname
-          role {
-            _id
-          }
           speciality {
             _id
           }
@@ -56,9 +53,6 @@ describe("Get all users", () => {
           _id: "5ff307772a325013a4389fa2",
           firstname: "Pierre",
           lastname: "Dupond",
-          role: {
-            _id: "5fdb76f200e2c95340a59cc9",
-          },
           speciality: {
             _id: "5fdb812a00e2c95340a59ccb",
           },
@@ -67,9 +61,6 @@ describe("Get all users", () => {
           _id: "5ff4816d653ab339a84574a6",
           firstname: "Julie",
           lastname: "Durand",
-          role: {
-            _id: "5fdb76f200e2c95340a59cc9",
-          },
           speciality: {
             _id: "5fdb812a00e2c95340a59ccb",
           },
